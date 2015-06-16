@@ -3,7 +3,7 @@ package be.pielambr.minerva4j.client;
 import be.pielambr.minerva4j.beans.Announcement;
 import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
-import be.pielambr.minerva4j.parse.AnnouncementParser;
+import be.pielambr.minerva4j.parsers.AnnouncementParser;
 import be.pielambr.minerva4j.utility.Constants;
 import jodd.http.HttpBrowser;
 import jodd.http.HttpRequest;

@@ -1,4 +1,4 @@
-package be.pielambr.minerva4j.parse;
+package be.pielambr.minerva4j.parsers;
 
 /**
  * Created by Pieterjan Lambrecht on 16/06/2015.

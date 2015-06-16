@@ -1,4 +1,4 @@
-package be.pielambr.minerva4j.parse;
+package be.pielambr.minerva4j.parsers;
 
 import be.pielambr.minerva4j.beans.Announcement;
 import be.pielambr.minerva4j.beans.Course;
@@ -69,7 +69,7 @@ public class AnnouncementParser {
      * @param time String containing the time
      * @return returns either the date of today if parsing fails, or the date of the string
      */
-    public static Date parseDate(String time) {
+    private static Date parseDate(String time) {
         try {
             return DATE_FORMAT.parse(time);
         } catch (ParseException e) {
