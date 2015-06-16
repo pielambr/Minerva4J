@@ -9,8 +9,8 @@ public class Course {
     private final String _name;
 
     public Course(String code, String name) {
-        this._code = code;
-        this._name = name;
+        _code = code;
+        _name = name;
     }
 
     public String getCode() {

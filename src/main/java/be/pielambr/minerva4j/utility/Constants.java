@@ -12,4 +12,8 @@ public class Constants {
     public static final String DOCUMENT = "/document";
     public static final String DOCUMENTS = "/docments";
     public static final String COURSE_LIST = "ul.course-list";
+    public static final String ANNOUNCEMENT_LIST = "div.course-announcements div.accordion-group";
+    public static final String ANNOUNCEMENT_DATE = "div.insert_date";
+    public static final String ANNOUNCEMENT_TITLE = "a.accordion-toggle";
+    public static final String ANNOUNCEMENT_BODY = "";
 }

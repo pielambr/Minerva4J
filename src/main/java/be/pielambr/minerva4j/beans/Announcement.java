@@ -12,20 +12,20 @@ public class Announcement {
     private Date _posted;
 
     public Announcement(String content, String title, Date posted) {
-        this._content = content;
-        this._title = title;
-        this._posted = posted;
+        _content = content;
+        _title = title;
+        _posted = posted;
     }
 
-    public String get_content() {
+    public String getContent() {
         return _content;
     }
 
-    public String get_title() {
+    public String getTitle() {
         return _title;
     }
 
-    public Date get_posted() {
+    public Date getPosted() {
         return _posted;
     }
 }
