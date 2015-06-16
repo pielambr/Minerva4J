@@ -4,6 +4,7 @@ import be.pielambr.minerva4j.beans.Announcement;
 import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import be.pielambr.minerva4j.parsers.AnnouncementParser;
+import be.pielambr.minerva4j.parsers.CourseParser;
 import be.pielambr.minerva4j.utility.Constants;
 import jodd.http.HttpBrowser;
 import jodd.http.HttpRequest;
@@ -81,6 +82,14 @@ public class Client {
      */
     public List<Announcement> getAnnouncements(Course course) {
         return AnnouncementParser.getAnnouncements(course, _browser);
+    }
+
+    /**
+     * Returns a list of courses
+     * @return A list of courses for the current user
+     */
+    public List<Course> getCourses() {
+        return CourseParser.getCourses(_browser);
     }
 
 }
