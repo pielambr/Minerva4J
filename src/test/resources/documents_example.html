@@ -1,0 +1,189 @@
+<!-- {FOOTER_VERSION} -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Minerva Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/mobile/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="/mobile/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <script src="/mobile/js/jquery-1.8.1.min.js"></script>
+
+    <link href="/mobile/css/ugent.less" type="text/css" rel="stylesheet/less" />
+    <script src="/mobile/js/less-1.3.0.min.js"></script>
+    <script src="/mobile/js/moment.min.js"></script>
+
+    <script type="text/javascript">
+      // scalability fix for rotating ipad/iphone
+      if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+          var viewportmeta = document.querySelector('meta[name="viewport"]');
+          if (viewportmeta) {
+              viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+              document.body.addEventListener('gesturestart', function () {
+                  viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
+              }, false);
+          }
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+        <link rel='stylesheet' type='text/css' href='/mobile/fullcalendar/fullcalendar.css' />
+    <script type='text/javascript' src='/mobile/fullcalendar/fullcalendar.js'></script>
+
+    <script type="text/javascript">
+
+       var document_tree = {"type":"root","items":{"Ecolizer.pdf":{"v":"1","id":"13889121","title":"Ecolizer","filename":"Ecolizer.pdf","type":"file","size":"2584487","status":"new","items":[]},"EMAS_EASY_EN.pdf":{"v":"1","id":"13889111","title":"EMAS_EASY_EN","filename":"EMAS_EASY_EN.pdf","type":"file","size":"5122975","status":"new","items":[]},"ErvaringDoorInspiratie_LNE.pdf":{"v":"1","id":"13153682","title":"ErvaringDoorInspiratie_LNE","filename":"ErvaringDoorInspiratie_LNE.pdf","type":"file","size":"3549451","status":"new","items":[]},"Oefeningen12maart":{"v":"1","id":"13383061","title":"Oefeningen12maart","filename":"Oefeningen12maart","type":"folder","size":"0","status":"new","items":{"Milieubeheer_Conversies_lucht_Oefening.pdf":{"v":"1","id":"13383071","title":"Milieubeheer_Conversies lucht_Oefening","filename":"Milieubeheer_Conversies_lucht_Oefening.pdf","type":"file","size":"625520","status":"new","items":[]},"Milieubeheer_Conversies_lucht_Oefening_IncusiefAntwoorden.pdf":{"v":"1","id":"13463081","title":"Milieubeheer_Conversies lucht_Oefening_IncusiefAntwoorden","filename":"Milieubeheer_Conversies_lucht_Oefening_IncusiefAntwoorden.pdf","type":"file","size":"938079","status":"new","items":[]}}},"Presentaties":{"v":"1","id":"13022241","title":"Presentaties","filename":"Presentaties","type":"folder","size":"0","status":"new","items":{"Milieubeheer_Hfdst1_slides.pdf":{"v":"1","id":"13366401","title":"Milieubeheer_Hfdst1_slides","filename":"Milieubeheer_Hfdst1_slides.pdf","type":"file","size":"5908102","status":"new","items":[]},"Milieubeheer_Hfdst2_slides.pdf":{"v":"1","id":"13366421","title":"Milieubeheer_Hfdst2_slides","filename":"Milieubeheer_Hfdst2_slides.pdf","type":"file","size":"5405818","status":"new","items":[]},"Milieubeheer_Hfdst3_slides.pdf":{"v":"1","id":"13744211","title":"Milieubeheer_Hfdst3_slides","filename":"Milieubeheer_Hfdst3_slides.pdf","type":"file","size":"7845809","status":"new","items":[]},"Milieubeheer_Hfdst4_slides.pdf":{"v":"1","id":"13766451","title":"Milieubeheer_Hfdst4_slides","filename":"Milieubeheer_Hfdst4_slides.pdf","type":"file","size":"7373489","status":"new","items":[]},"Milieubeheer_Hfdst5_slides.pdf":{"v":"1","id":"13889091","title":"Milieubeheer_Hfdst5_slides","filename":"Milieubeheer_Hfdst5_slides.pdf","type":"file","size":"4145372","status":"new","items":[]},"Milieubeheer_Hfdst6_slides.pdf":{"v":"1","id":"13889101","title":"Milieubeheer_Hfdst6_slides","filename":"Milieubeheer_Hfdst6_slides.pdf","type":"file","size":"4522544","status":"new","items":[]}}},"Video":{"v":"1","id":"13889131","title":"Video","filename":"Video","type":"folder","size":"0","status":"new","items":{"Indaver_-_thermische_verwerking_in_roosteroven.mp4":{"v":"1","id":"13889141","title":"Indaver - thermische verwerking in roosteroven","filename":"Indaver_-_thermische_verwerking_in_roosteroven.mp4","type":"file","size":"29255098","status":"new","items":[]},"Materialendecreet.mp4":{"v":"1","id":"13889171","title":"Materialendecreet","filename":"Materialendecreet.mp4","type":"file","size":"47361094","status":"new","items":[]}}}}};
+       var course_url = '/mobile/ajax/courses/E70103102014';
+       var use_filename = false;
+
+    </script>
+
+    <link rel="shortcut icon" href="/mobile/img/favicon.ico">
+
+    <link rel="apple-touch-icon" href="/mobile/img/apple-touch-icon-57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/mobile/img/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/mobile/img/apple-touch-icon-114.png">
+  </head>
+
+  <body>
+
+      <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="navbar-inner">
+          <div class="container">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+                        <ul class="nav back-button">
+              <li><a href="/mobile/courses/E70103102014"><i class="icon-chevron-left icon-white"></i></a></li>
+            </ul>
+            
+            <a class="brand" href="/mobile/">
+                <img src="/mobile/img/headerlogo.gif" style="vertical-align: bottom;"/>
+                Minerva
+            </a>
+
+            <div class="nav-collapse collapse">
+              <p class="navbar-text pull-right visible-desktop">
+                                  Aangemeld als <a href="#" class="navbar-link">pielambr.</a>
+                  <a href="/mobile/logout">Afmelden</a>
+                              </p>
+
+              <ul class="nav">
+                                <li class="active"><a href="/mobile/courses">Mijn Cursussen</a></li>
+                <li class=" "><a href="/mobile/calendar">Mijn Agenda</a></li>
+                                <li class=" "><a href="/mobile/contact">Contact</a></li>
+
+                <li class=" "><a href="https://minerva.ugent.be?nomobile=true">Naar Volledige Site</a></li>
+
+                                <li class="hidden-desktop">
+                  <a href="/mobile/logout">Afmelden (pielambr)</a>
+                </li>
+                              </ul>
+
+            </div><!--/.nav-collapse -->
+
+          </div>
+        </div>
+
+      </div>
+
+
+    <div class="wrapper">
+
+      <div class="container">
+
+                  <ul class="breadcrumb">
+            <li><a href="/mobile/courses">Mijn Cursussen</a> <span class="divider">/</span></li>
+  <li><a href="/mobile/courses/E70103102014">Milieubeheer</a> <span class="divider">/</span></li>
+  <li class="active">Documenten <span class="divider">/</span></li>
+          </ul>
+        
+        
+    <div class="controls ui-grid-a">
+        <div class="ui-block-a viewtype">
+
+            <a class="btn" id="prev" href="#"><i class="icon-arrow-up"></i> Omhoog</a>
+
+        </div>
+
+        <div id="documentNavigation" class="ui-block-b navigation">
+
+        </div>
+
+    </div>
+
+    <div id="documentContainer">
+
+        <div id="directory">
+          <ul>
+          </ul>
+        </div>
+
+    </div>
+
+    <script src="/mobile/translation.js?language=dutch"></script>
+    <script src="/mobile/js/documents.js"></script>
+
+
+      </div> <!-- /container -->
+
+
+      <div class="push"></div>
+
+    </div> <!-- /wrapper -->
+
+
+
+
+    <div class="footer">
+
+      <div class="container">
+
+        <hr>
+
+        <footer>
+          <div class="pull-right"><a href="https://minerva.ugent.be?nomobile=true">Naar Volledige Site</a></div>
+          <p>&copy; 2015 - Universiteit Gent</p>
+        </footer>
+
+      </div>
+
+    </div>
+
+    <script src="/mobile/js/bootstrap.js"></script>
+    <!-- Piwik -->
+      <script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(["trackPageView"]);
+	  _paq.push(["enableLinkTracking"]);
+	
+	  (function() {
+	    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik1.ugent.be/piwik/";
+        _paq.push(["setTrackerUrl", u +"piwik.php"]);
+        _paq.push(["setSiteId", "13"]);
+	    var d=document, g=d.createElement("script"),
+	  s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+	  g.defer=true; g.async=true; g.src=u+"piwik.js";
+	  s.parentNode.insertBefore(g,s); })(); 
+      </script>
+    <!-- End Piwik Code -->
+  </body>
+</html>

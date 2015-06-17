@@ -28,7 +28,7 @@ public class AnnouncementParser {
      * @param browser An instance of the Jerry browser
      * @return Returns a list of announcements for this course
      */
-    public static List<Announcement> getAnnouncements(Course course, HttpBrowser browser) {
+    public static List<Announcement> getAnnouncements(HttpBrowser browser, Course course) {
         HttpRequest request = HttpRequest.get(Constants.COURSE_URL + course.getCode() + Constants.ANNOUNCEMENT);
         browser.sendRequest(request);
         Jerry coursePage;
@@ -69,8 +69,7 @@ public class AnnouncementParser {
         Date date = parseDate(dateString);
         String title = announcement.$(Constants.ANNOUNCEMENT_TITLE).text();
         String content = announcement.$(Constants.ANNOUNCEMENT_BODY).html();
-        Announcement a = new Announcement(content, title, date);
-        return a;
+        return new Announcement(content, title, date);
     }
 
     /**

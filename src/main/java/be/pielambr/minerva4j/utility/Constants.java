@@ -10,7 +10,7 @@ public class Constants {
     public static final String AJAX_URL = "https://minerva.ugent.be/mobile/ajax/courses/";
     public static final String ANNOUNCEMENT = "/announcement";
     public static final String DOCUMENT = "/document";
-    public static final String DOCUMENTS = "/docments";
+    public static final String DOCUMENTS = "/documents/";
     public static final String COURSE_LIST = "ul.course-list";
     public static final String COURSE = "li.course-item a";
     public static final String ANNOUNCEMENT_LIST = "div.course-announcements div.accordion-group";

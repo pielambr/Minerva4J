@@ -1,11 +1,6 @@
 import be.pielambr.minerva4j.beans.Announcement;
-import be.pielambr.minerva4j.beans.Course;
-import be.pielambr.minerva4j.client.Client;
-import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import be.pielambr.minerva4j.parsers.AnnouncementParser;
-import be.pielambr.minerva4j.parsers.CourseParser;
 import jodd.jerry.Jerry;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +14,6 @@ import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by Pieterjan Lambrecht on 16/06/2015.
@@ -46,7 +40,7 @@ public class TestAnnouncementParser {
             html = builder.toString();
             in.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Properties file not found");
+            System.out.println("HTML file not found");
         } catch (IOException e) {
             System.out.println("Error closing HTML file");
         }

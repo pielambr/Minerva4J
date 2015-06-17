@@ -2,10 +2,14 @@ package be.pielambr.minerva4j.client;
 
 import be.pielambr.minerva4j.beans.Announcement;
 import be.pielambr.minerva4j.beans.Course;
+import be.pielambr.minerva4j.beans.Document;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import be.pielambr.minerva4j.parsers.AnnouncementParser;
 import be.pielambr.minerva4j.parsers.CourseParser;
+import be.pielambr.minerva4j.parsers.DocumentParser;
 import be.pielambr.minerva4j.utility.Constants;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import jodd.http.HttpBrowser;
 import jodd.http.HttpRequest;
 import jodd.jerry.Jerry;
@@ -81,7 +85,7 @@ public class Client {
      * @return Returns a list of announcements
      */
     public List<Announcement> getAnnouncements(Course course) {
-        return AnnouncementParser.getAnnouncements(course, _browser);
+        return AnnouncementParser.getAnnouncements(_browser, course);
     }
 
     /**
@@ -90,6 +94,29 @@ public class Client {
      */
     public List<Course> getCourses() {
         return CourseParser.getCourses(_browser);
+    }
+
+    /**
+     * Returns a list of ducments for a given course
+     * @param course The course for which the documents needs to be retrieved
+     * @return A list of documents
+     */
+    public List<Document> getDocuments(Course course) {
+        return DocumentParser.getDocuments(_browser, course);
+    }
+
+    /**
+     * Returns a valid download URL for a given document
+     * @param course The course in which the document is uploaded
+     * @param document The document
+     * @return A valid download URL for the document
+     */
+    public String getDocumentDownloadURL(Course course, Document document) {
+        HttpRequest request = HttpRequest.get(Constants.AJAX_URL + course.getCode() + Constants.DOCUMENTS + document.getId());
+        _browser.sendRequest(request);
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(_browser.getHttpResponse().bodyText());
+        return element.getAsJsonObject().get("url").getAsString();
     }
 
 }

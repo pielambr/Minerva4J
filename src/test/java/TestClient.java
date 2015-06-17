@@ -1,3 +1,5 @@
+import be.pielambr.minerva4j.beans.Course;
+import be.pielambr.minerva4j.beans.Document;
 import be.pielambr.minerva4j.client.Client;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import org.junit.Assert;
@@ -55,6 +57,21 @@ public class TestClient {
         try {
             client.connect();
             Assert.fail("Login should have failed");
+        } catch (LoginFailedException e) {
+            // It's all fine
+        }
+    }
+
+    @Test
+    public void testDownloadURL() {
+        Client client = new Client(_username, _password);
+        try {
+            Course course = new Course("E70103102014", "Milieubeheer");
+            Document document = new Document("13889171", "Materialendecreet.mp4");
+            client.connect();
+            String url = client.getDocumentDownloadURL(course, document);
+            Assert.assertNotNull(url);
+            Assert.assertNotEquals("", url);
         } catch (LoginFailedException e) {
             // It's all fine
         }

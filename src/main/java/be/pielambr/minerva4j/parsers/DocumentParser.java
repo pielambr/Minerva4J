@@ -38,28 +38,27 @@ public class DocumentParser {
         } catch (UnsupportedEncodingException ex){
             page = Jerry.jerry(browser.getHttpResponse().body());
         }
+        return parseDocuments(page);
+    }
+
+    /**
+     * Parses a Jerry node and returns the documents found within
+     * @param page A Jerry node containing documents
+     * @return A list of documents
+     */
+    private static List<Document> parseDocuments(Jerry page) {
+        List<Document> documents = new ArrayList<Document>();
         String head = page.$("head").first().html();
         if(head != null){
             Matcher m = DOCUMENT_REGEX.matcher(head);
             if(m.find()){
-                String json = m.group(2).substring(0, m.group(2).length() - 1);
-                return parseDocuments(json);
-            }
-        }
-        return new ArrayList<Document>();
-    }
-
-    /**
-     * Parses a JSON string and returns the documents found within
-     * @param json A JSON string containing documents
-     * @return A list of documents
-     */
-    private static List<Document> parseDocuments(String json) {
-        List<Document> documents = new ArrayList<Document>();
-        JSONDocument jsonDocument = new Gson().fromJson(json, JSONDocument.class);
-        if(jsonDocument!= null && jsonDocument.getType().equals(Constants.TYPE_ROOT)){
-            if(jsonDocument.getItems() != null) {
-                documents.addAll(parseDirectory(jsonDocument.getItems()));
+                String json = m.group(2).trim().substring(0, m.group(2).length() - 2);
+                JSONDocument jsonDocument = new Gson().fromJson(json, JSONDocument.class);
+                if(jsonDocument!= null && jsonDocument.getType().equals(Constants.TYPE_ROOT)){
+                    if(jsonDocument.getItems() != null) {
+                        documents.addAll(parseDirectory(jsonDocument.getItems()));
+                    }
+                }
             }
         }
         return documents;
@@ -75,6 +74,7 @@ public class DocumentParser {
         for(JSONDocument document : items.values()) {
             if(document.getType().equals(Constants.TYPE_FILE)) {
                 Document doc = new Document(document.getId(), document.getFilename());
+                documents.add(doc);
             } else if(document.getType().equals(Constants.TYPE_FOLDER) && document.getItems() != null) {
                 documents.addAll(parseDirectory(document.getItems()));
             }
