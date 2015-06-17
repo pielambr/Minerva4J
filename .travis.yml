@@ -11,5 +11,5 @@ before_script:
   - echo "password="+$password >> /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
 
 script:
- - cd /home/travis/build/pielambr/Minerva4J/src/test
+ - cd /home/travis/build/pielambr/Minerva4J
  - mvn test -B
