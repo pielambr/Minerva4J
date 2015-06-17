@@ -6,6 +6,6 @@ jdk:
   - oraclejdk8
 
 before_script:
-  - rm src/test/resources/settings.properties
-  - echo "username="+$username > src/test/resources/settings.properties
-  - echo "password="+$password >> src/test/resources/settings.properties
+  - rm /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
+  - echo "username="+$username > /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
+  - echo "password="+$password >> /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
