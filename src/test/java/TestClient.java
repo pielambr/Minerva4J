@@ -61,19 +61,4 @@ public class TestClient {
             // It's all fine
         }
     }
-
-    @Test
-    public void testDownloadURL() {
-        Client client = new Client(_username, _password);
-        try {
-            Course course = new Course("E70103102014", "Milieubeheer");
-            Document document = new Document("13889171", "Materialendecreet.mp4");
-            client.connect();
-            String url = client.getDocumentDownloadURL(course, document);
-            Assert.assertNotNull(url);
-            Assert.assertNotEquals("", url);
-        } catch (LoginFailedException e) {
-            // It's all fine
-        }
-    }
 }
