@@ -6,10 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
@@ -27,7 +24,7 @@ public class TestDocumentParser {
      */
     @Before
     public void loadProperties() {
-        InputStream in = null;
+        FileInputStream in = null;
         try {
             in = new FileInputStream("src/test/resources/documents_example.html");
             StringBuilder builder = new StringBuilder();
@@ -35,7 +32,7 @@ public class TestDocumentParser {
             while((ch = in.read()) != -1){
                 builder.append((char)ch);
             }
-            html = builder.toString();
+            html = new String(builder.toString().getBytes(), "UTF8");
             in.close();
         } catch (FileNotFoundException e) {
             System.out.println("HTML file not found");
