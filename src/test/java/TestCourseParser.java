@@ -1,6 +1,8 @@
 import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.client.Client;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
+import be.pielambr.minerva4j.parsers.CourseParser;
+import jodd.jerry.Jerry;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,6 +12,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,42 +22,52 @@ import java.util.Properties;
  */
 public class TestCourseParser {
 
-    private String _username;
-    private String _password;
+    private String html;
 
-    private Client _client;
-
+    /**
+     * Load an HTML example page with courses
+     */
     @Before
     public void loadProperties() {
-        Properties properties = new Properties();
         InputStream in = null;
         try {
-            in = new FileInputStream("src/test/resources/settings.properties");
-            properties.load(in);
+            in = new FileInputStream("src/test/resources/courses_example.html");
+            StringBuilder builder = new StringBuilder();
+            int ch;
+            while((ch = in.read()) != -1){
+                builder.append((char)ch);
+            }
+            html = builder.toString();
             in.close();
-            _username = properties.getProperty("username");
-            _password = properties.getProperty("password");
-            _client = new Client(_username, _password);
-            _client.connect();
         } catch (FileNotFoundException e) {
             System.out.println("Properties file not found");
         } catch (IOException e) {
-            System.out.println("Properties file could not be opened");
-        } catch (LoginFailedException e) {
-            System.out.println("Login failed");
+            System.out.println("Error closing HTML file");
         }
     }
 
+    /**
+     * Check if the courses found on the page are correct
+     */
     @Test
     public void testGettingCourses() {
-        System.out.println("Testing getting of courses");
-        List<Course> courses = _client.getCourses();
-        System.out.println(courses.size() + " courses found");
-        Assert.assertNotEquals(courses.size(), 0);
-    }
-
-    @After
-    public void closeConnection() {
-        _client.close();
+        Jerry jerry = Jerry.jerry(html);
+        Method method = null;
+        try {
+            method = CourseParser.class.getDeclaredMethod("parseCourses", Jerry.class);
+            method.setAccessible(true);
+            List<Course> courses = (List<Course>) method.invoke(null, jerry);
+            Assert.assertEquals(29, courses.size());
+            Assert.assertEquals("Algoritmen en datastructuren II", courses.get(0).getName());
+            Assert.assertEquals("C00269202013", courses.get(0).getCode());
+            Assert.assertEquals("StuW - Studentenvertegenwoordiging FWE", courses.get(28).getName());
+            Assert.assertEquals("CSR_ext", courses.get(28).getCode());
+        } catch (NoSuchMethodException e) {
+            System.out.println("Method to be tested was not found");
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

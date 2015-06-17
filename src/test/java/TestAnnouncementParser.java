@@ -15,39 +15,33 @@ import java.util.Properties;
  */
 public class TestAnnouncementParser {
 
-    private String _username;
-    private String _password;
+    private String html;
 
-    private Client _client;
-
+    /**
+     * Load an HTML example page with courses
+     */
     @Before
     public void loadProperties() {
-        Properties properties = new Properties();
         InputStream in = null;
         try {
-            in = new FileInputStream("src/test/resources/settings.properties");
-            properties.load(in);
+            in = new FileInputStream("src/test/resources/announcements_example.html");
+            StringBuilder builder = new StringBuilder();
+            int ch;
+            while((ch = in.read()) != -1){
+                builder.append((char)ch);
+            }
+            html = builder.toString();
             in.close();
-            _username = properties.getProperty("username");
-            _password = properties.getProperty("password");
-            _client = new Client(_username, _password);
-            _client.connect();
         } catch (FileNotFoundException e) {
             System.out.println("Properties file not found");
         } catch (IOException e) {
-            System.out.println("Properties file could not be opened");
-        } catch (LoginFailedException e) {
-            System.out.println("Login failed");
+            System.out.println("Error closing HTML file");
         }
     }
 
     @Test
-    public void testGetAnnouncements() {
+    public void testGettingAnnouncements() {
         System.out.println("Testing getting announcements");
     }
 
-    @After
-    public void closeConnection() {
-        _client.close();
-    }
 }

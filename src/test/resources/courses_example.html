@@ -1,0 +1,392 @@
+<!-- {FOOTER_VERSION} -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Minerva Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/mobile/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="/mobile/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <script src="/mobile/js/jquery-1.8.1.min.js"></script>
+
+    <link href="/mobile/css/ugent.less" type="text/css" rel="stylesheet/less" />
+    <script src="/mobile/js/less-1.3.0.min.js"></script>
+    <script src="/mobile/js/moment.min.js"></script>
+
+    <script type="text/javascript">
+      // scalability fix for rotating ipad/iphone
+      if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+          var viewportmeta = document.querySelector('meta[name="viewport"]');
+          if (viewportmeta) {
+              viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+              document.body.addEventListener('gesturestart', function () {
+                  viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
+              }, false);
+          }
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+        
+    <link rel="shortcut icon" href="/mobile/img/favicon.ico">
+
+    <link rel="apple-touch-icon" href="/mobile/img/apple-touch-icon-57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/mobile/img/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/mobile/img/apple-touch-icon-114.png">
+  </head>
+
+  <body>
+
+      <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="navbar-inner">
+          <div class="container">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            
+            <a class="brand" href="/mobile/">
+                <img src="/mobile/img/headerlogo.gif" style="vertical-align: bottom;"/>
+                Minerva
+            </a>
+
+            <div class="nav-collapse collapse">
+              <p class="navbar-text pull-right visible-desktop">
+                                  Aangemeld als <a href="#" class="navbar-link">Anonymous.</a>
+                  <a href="/mobile/logout">Afmelden</a>
+                              </p>
+
+              <ul class="nav">
+                                <li class="active"><a href="/mobile/courses">Mijn Cursussen</a></li>
+                <li class=" "><a href="/mobile/calendar">Mijn Agenda</a></li>
+                                <li class=" "><a href="/mobile/contact">Contact</a></li>
+
+                <li class=" "><a href="https://minerva.ugent.be?nomobile=true">Naar Volledige Site</a></li>
+
+                                <li class="hidden-desktop">
+                  <a href="/mobile/logout">Afmelden (Anonymous)</a>
+                </li>
+                              </ul>
+
+            </div><!--/.nav-collapse -->
+
+          </div>
+        </div>
+
+      </div>
+
+
+    <div class="wrapper">
+
+      <div class="container">
+
+                  <ul class="breadcrumb">
+                      <li class="active">Mijn Cursussen</li>
+                    </ul>
+        
+        
+	<div>
+        <ul class="course-list">
+                    <li class="category-header">Cursussen zonder categorie</li>
+
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00269202013">
+                            Algoritmen en datastructuren II<br />
+                            <em>C002692 (2013 - 2014) &ndash; Gunnar Brinkmann</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00303402013">
+                            Functionele en logische programmeertalen<br />
+                            <em>C003034 (2013 - 2014) &ndash; Tom Schrijvers</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00162102013">
+                            Software-ontwikkeling I<br />
+                            <em>C001621 (2013 - 2014) &ndash; Filip De Turck</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00300802013">
+                            Formele logica<br />
+                            <em>C003008 (2013 - 2014) &ndash; Andreas Weiermann</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00189302013">
+                            Discrete wiskunde<br />
+                            <em>C001893 (2013 - 2014) &ndash; Bart De Bruyn</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00057402013">
+                            Databanken<br />
+                            <em>C000574 (2013 - 2014) &ndash; Guy De Tré</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00066302013">
+                            Analyse I<br />
+                            <em>C000663 (2013 - 2014) &ndash; Mike Nachtegael</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00152102013">
+                            Wetenschappelijk rekenen<br />
+                            <em>C001521 (2013 - 2014) &ndash; Marnix Van Daele</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E03411002013">
+                            Computerarchitectuur<br />
+                            <em>E034110 (2013 - 2014) &ndash; Koen De Bosschere</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/C00212602013">
+                            Multimedia<br />
+                            <em>C002126 (2013 - 2014) &ndash; Rik Van de Walle</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E01761002013">
+                            Softwareontwikkeling<br />
+                            <em>E017610 (2013 - 2014) &ndash; Bart Dhoedt</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/CX00009A2013">
+                            WiNA - Studentenvereniging Wiskunde, Informatica, Fysica en Sterrenkunde<br />
+                            <em>CX00009A (2013 - 2014) &ndash; WiNA</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70102302014">
+                            Algemene chemie<br />
+                            <em>E701023 (2014 - 2015) &ndash; Karoline De Doncker</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70102602014">
+                            Fysica I<br />
+                            <em>E701026 (2014 - 2015) &ndash; Toon Van Alboom</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70102702014">
+                            Informatica I<br />
+                            <em>E701027 (2014 - 2015) &ndash; Helga Naessens</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70102802014">
+                            Ingenieursproject<br />
+                            <em>E701028 (2014 - 2015) &ndash; Kathleen Gekiere</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70102902014">
+                            Materialen<br />
+                            <em>E701029 (2014 - 2015) &ndash; Kim Ragaert</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70103002014">
+                            Mechanica<br />
+                            <em>E701030 (2014 - 2015) &ndash; Tom Claessens</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70103202014">
+                            Ontwerptools<br />
+                            <em>E701032 (2014 - 2015) &ndash; Marijke Steeman</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70103302014">
+                            Wiskunde I<br />
+                            <em>E701033 (2014 - 2015) &ndash; Tanja Van Hecke</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item ">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70102402014">
+                            Elektriciteit<br />
+                            <em>E701024 (2014 - 2015) &ndash; Luc Dupré</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/EX00003A2014b6c5">
+                            VTK - Vlaamse Technische Kring<br />
+                            <em>EX00003A (2014 - 2015) &ndash; Geen titularis gekend</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70102502014">
+                            Elektrische en elektronische bouwstenen<br />
+                            <em>E701025 (2014 - 2015) &ndash; Jo Verhaevert</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70103102014">
+                            Milieubeheer<br />
+                            <em>E701031 (2014 - 2015) &ndash; Johan Lauwaert</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E70103402014">
+                            Wiskunde II<br />
+                            <em>E701034 (2014 - 2015) &ndash; Peter Van Lancker</em>
+                        </a>
+                    </div>
+                                                </li>
+            
+                    <li class="category-header">Infosites</li>
+
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/E_ext">
+                            Faculteit Ingenieurswetenschappen en Architectuur / Faculty of Engineering and Architecture<br />
+                            <em>E  &ndash; Infosite</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/ESR_ext">
+                            Studentenvertegenwoordiging faculteit Ingenieurswetenschappen en Architectuur<br />
+                            <em>ESR  &ndash; Infosite</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/CBINFO_ext">
+                            Bachelor in de informatica<br />
+                            <em>CBINFO  &ndash; Infosite</em>
+                        </a>
+                    </div>
+                                                </li>
+                        <li class="course-item has-update">
+                                                        <div class="status5">
+                        <a href="/mobile/courses/CSR_ext">
+                            StuW - Studentenvertegenwoordiging FWE<br />
+                            <em>CSR  &ndash; Infosite</em>
+                        </a>
+                    </div>
+                                                </li>
+            
+                </ul>
+    </div>
+
+
+      </div> <!-- /container -->
+
+
+      <div class="push"></div>
+
+    </div> <!-- /wrapper -->
+
+
+
+
+    <div class="footer">
+
+      <div class="container">
+
+        <hr>
+
+        <footer>
+          <div class="pull-right"><a href="https://minerva.ugent.be?nomobile=true">Naar Volledige Site</a></div>
+          <p>&copy; 2015 - Universiteit Gent</p>
+        </footer>
+
+      </div>
+
+    </div>
+
+    <script src="/mobile/js/bootstrap.js"></script>
+    <!-- Piwik -->
+      <script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(["trackPageView"]);
+	  _paq.push(["enableLinkTracking"]);
+	
+	  (function() {
+	    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik1.ugent.be/piwik/";
+        _paq.push(["setTrackerUrl", u +"piwik.php"]);
+        _paq.push(["setSiteId", "13"]);
+	    var d=document, g=d.createElement("script"),
+	  s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+	  g.defer=true; g.async=true; g.src=u+"piwik.js";
+	  s.parentNode.insertBefore(g,s); })(); 
+      </script>
+    <!-- End Piwik Code -->
+  </body>
+</html>

@@ -18,6 +18,9 @@ public class TestClient {
     private String _username;
     private String _password;
 
+    /**
+     * Loads the username and the password from the settings.properties file
+     */
     @Before
     public void loadProperties() {
         Properties properties = new Properties();
@@ -31,14 +34,16 @@ public class TestClient {
         } catch (FileNotFoundException e) {
             System.out.println("Properties file not found");
         } catch (IOException e) {
-            System.out.println("Properties file could not be opened");
+            System.out.println("Error closing properties file");
         }
     }
 
+    /**
+     * Tests the login to Minerva and the detection for wrong credentials
+     */
     @Test
     public void testConnect() {
         // This should not fail
-        System.out.println("Testing login...");
         Client client = new Client(_username, _password);
         try {
             client.connect();

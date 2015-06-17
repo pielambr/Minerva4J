@@ -1,0 +1,447 @@
+<!-- {FOOTER_VERSION} -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Minerva Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/mobile/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="/mobile/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <script src="/mobile/js/jquery-1.8.1.min.js"></script>
+
+    <link href="/mobile/css/ugent.less" type="text/css" rel="stylesheet/less" />
+    <script src="/mobile/js/less-1.3.0.min.js"></script>
+    <script src="/mobile/js/moment.min.js"></script>
+
+    <script type="text/javascript">
+      // scalability fix for rotating ipad/iphone
+      if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+          var viewportmeta = document.querySelector('meta[name="viewport"]');
+          if (viewportmeta) {
+              viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+              document.body.addEventListener('gesturestart', function () {
+                  viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
+              }, false);
+          }
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+        <link rel='stylesheet' type='text/css' href='/mobile/fullcalendar/fullcalendar.css' />
+    <script type='text/javascript' src='/mobile/fullcalendar/fullcalendar.js'></script>
+
+    <script type="text/javascript">
+
+
+
+    </script>
+
+    <link rel="shortcut icon" href="/mobile/img/favicon.ico">
+
+    <link rel="apple-touch-icon" href="/mobile/img/apple-touch-icon-57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/mobile/img/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/mobile/img/apple-touch-icon-114.png">
+  </head>
+
+  <body>
+
+      <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="navbar-inner">
+          <div class="container">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+                        <ul class="nav back-button">
+              <li><a href="/mobile/courses/E70103302014"><i class="icon-chevron-left icon-white"></i></a></li>
+            </ul>
+            
+            <a class="brand" href="/mobile/">
+                <img src="/mobile/img/headerlogo.gif" style="vertical-align: bottom;"/>
+                Minerva
+            </a>
+
+            <div class="nav-collapse collapse">
+              <p class="navbar-text pull-right visible-desktop">
+                                  Aangemeld als <a href="#" class="navbar-link">Anonymous.</a>
+                  <a href="/mobile/logout">Afmelden</a>
+                              </p>
+
+              <ul class="nav">
+                                <li class="active"><a href="/mobile/courses">Mijn Cursussen</a></li>
+                <li class=" "><a href="/mobile/calendar">Mijn Agenda</a></li>
+                                <li class=" "><a href="/mobile/contact">Contact</a></li>
+
+                <li class=" "><a href="https://minerva.ugent.be?nomobile=true">Naar Volledige Site</a></li>
+
+                                <li class="hidden-desktop">
+                  <a href="/mobile/logout">Afmelden (Anonymous)</a>
+                </li>
+                              </ul>
+
+            </div><!--/.nav-collapse -->
+
+          </div>
+        </div>
+
+      </div>
+
+
+    <div class="wrapper">
+
+      <div class="container">
+
+                  <ul class="breadcrumb">
+            <li><a href="/mobile/courses">Mijn Cursussen</a> <span class="divider">/</span></li>
+  <li><a href="/mobile/courses/E70103302014">Wiskunde I</a> <span class="divider">/</span></li>
+  <li class="active">Aankondigingen</li>
+          </ul>
+        
+        
+  <div class="accordion course-announcements" id="accordion2">
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">04/02/2015</div>
+
+        <a href="#collapse2219331" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Feedback examen wiskunde 1</a>
+
+      </div>
+      <div id="collapse2219331" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste student,<br />
+De feedback van het examen wiskunde 1 gaat door in C2002 op:<br />
+maandag 9/2/2015: 12u.-15u.<br />
+dinsdag 10/2/2015: 12u.30-13u.30<br />
+vrijdag 13/2/2015: 8u.15-10u.15 en &nbsp;12u.30-15u.<br />
+<br />
+met vriendelijke groeten,<br />
+T. Van Hecke
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">18/12/2014</div>
+
+        <a href="#collapse2168411" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Punten en feedback Wiskunde I test</a>
+
+      </div>
+      <div id="collapse2168411" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste studenten<br />
+<br />
+In het mapje &quot;documenten&quot; vinden jullie de punten van de test van wiskunde I. Ze staan volgens studentennummer en de resultaten zijn op 15.<br />
+<br />
+De feedback over de testen gaat morgen (vrijdag 19/12/2014) door in het C gebouw (lokaal C2.002) van 10u tot 12u30.<br />
+<br />
+Met vriendelijke groeten<br />
+Jullie lesgevers
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">12/12/2014</div>
+
+        <a href="#collapse2156641" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">examen wiskunde 1 (lokaal!) + monitoraat</a>
+
+      </div>
+      <div id="collapse2156641" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste student,<br />
+Op vrijdag 19/12/2014 ben je welkom op&nbsp;het monitoraat voor wiskunde 1 van<strong> 12u. tot 13u.30 </strong>in C2002 met concrete vragen.<br />
+Om het examen van wiskunde 1 op 5/1/2015&nbsp;vlot van start te laten gaan, deze richtlijnen:<br />
+Mee te brengen:<br />
+- los schrijfgerief<br />
+- studentenkaart (zichtbaar op lessenaar te leggen)<br />
+Niet toegelaten:<br />
+- rekentoestel<br />
+- gsm of andere mediatoestellen<br />
+- eigen papier<br />
+Tijdsduur examen: 3 uren, startend vanaf 12u.45<br />
+Slechts &eacute;&eacute;n bank per persoon toegelaten.<br />
+Om nodeloos geloop te vermijden op de dag zelf, moet je je naar volgend lokaal begeven:<br />
+<strong>B1032: Aelvoet Cedric t.e.m. Buyse Emiel</strong><br />
+<strong>B4017: Buyse Joren t.e.m. De Boeck Jell</strong><br />
+<strong>C0051: De Bosschere Gilles t.e.m. De Wulf Caro</strong><br />
+<strong>PAUD: D&rsquo;Haene Mathieu t.e.m. Janssens Laura</strong><br />
+<strong>C4054: Jonckheere Ademar t.e.m. Rappe Wouter</strong><br />
+<strong>B0010: Rasschaert Hannes t.e.m. Van Eeghem Jente</strong><br />
+<strong>C0054: van Erkel Benjamin t.e.m. Ysebaert Arne</strong><br />
+(bij deze alfabetische rangschikking werd geen rekening gehouden met spaties)<br />
+Studenten met faciliteiten kunnen hiervan gebruik maken in lokaal C4.008 indien ze dit aangevraagd hebben.<br />
+&nbsp;
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">09/12/2014</div>
+
+        <a href="#collapse2148531" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Organisatie inhaaltest</a>
+
+      </div>
+      <div id="collapse2148531" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste student,<br />
+<br />
+De inhaaltest van Wiskunde&nbsp;1/ Wiskunde A/ statistiek&nbsp;is definitief vastgelegd op donderdag 18 december om&nbsp;9.15 uur.<br />
+De studenten die deze test moeten inhalen worden op tijd verwacht in lokaal C4.054.<br />
+<br />
+Gelieve je aanwezigheid nog eens via mail te bevestigen. Noteer in je mail welke test je moet inhalen.<br />
+<br />
+<strong>Vergeet niet dat de originele attesten zo vlug mogelijk na het einde van de ziekteperiode moeten afgegeven worden op het studentensecretariaat</strong>.<br />
+Studenten die nog een kopie van het geldig afwezigheidattest moeten indienen, kunnen dit ten laatste op de inhaaltest zelf meebrengen.<br />
+<br />
+Met vriendelijke groeten,<br />
+de lesgevers wiskunde I
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">04/12/2014</div>
+
+        <a href="#collapse2133631" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Inhaaltest</a>
+
+      </div>
+      <div id="collapse2133631" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste studenten,<br />
+&nbsp;<br />
+Ter info: de inhaaltest voor <strong>gewettigde afwezigheden</strong>, <strong>tijdig gestaafd</strong>, zal doorgaan in de inhaalweek (op donderdag 18 december om 9u15).<br />
+Meer info (lokaal etc ...) volgt later op Minerva.<br />
+&nbsp;<br />
+Met vriendelijke groeten,<br />
+de lesgever wiskunde I
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">26/11/2014</div>
+
+        <a href="#collapse2108651" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Oasis-kalender 3 december</a>
+
+      </div>
+      <div id="collapse2108651" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste Studenten<br />
+<br />
+Naar aanleiding van wat onrust van enkele studenten plaats ik deze aankondiging ter verduidelijking.<br />
+Op de oasis-kalender staat er dat er woensdag 3 december ook een test van wiskunde I is. Dit is uiteraard niet het geval. <strong>De <u>enige</u> test wiskunde I vindt vandaag 26 november plaats. </strong><br />
+(met uitzondering van de herhalingstest voor enkele specifieke gevallen)<br />
+<br />
+De test op 3 december is voor een ander jaar en daar hoeven jullie zich dus geen zorgen over te maken.<br />
+<br />
+Veel succes gewenst voor vanavond!<br />
+<br />
+Jullie lesgevers
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">24/11/2014</div>
+
+        <a href="#collapse2103421" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Correctie aankondiging over de test</a>
+
+      </div>
+      <div id="collapse2103421" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste studenten<br />
+<br />
+Voor de test wiskunde I op 26 november zal je geen rekenmachine of formularium krijgen. Dit foutje was het resultaat van meerdere testen tegelijk aan te kondigen, waarvoor onze excuses.<br />
+<br />
+De andere informatie is wel correct.<br />
+<br />
+Veel succes ermee!<br />
+Jullie lesgevers
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">24/11/2014</div>
+
+        <a href="#collapse2102381" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Info betreffende organisatie test wiskunde I op woensdag 26 november om 18.15u</a>
+
+      </div>
+      <div id="collapse2102381" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <div dir="ltr"><span style="font-family: tahoma,geneva,sans-serif;"><span style="font-size: 12px;"><font color="#000000"><font color="#000000">Beste studenten,<br />
+<br />
+Gelieve je <strong>op tijd </strong>aan te melden aan het juiste&nbsp;lokaal zodat de test op tijd kan starten. (Begintijdstip is 18.15 uur, zoals reeds in een eerder Minerva-bericht vermeld.)<br />
+Je gaat zitten&nbsp;aan een <strong>bankje</strong> waar een<strong>&nbsp;wit </strong>of een<strong>&nbsp;roze</strong>&nbsp;<strong>kladpapier</strong> ligt. Je schuift door.<br />
+Je mag <strong><span style="color: rgb(255, 0, 0);">enkel schrijfgerief</span></strong> en <span style="color: rgb(255, 0, 0);"><strong>studentenkaart</strong></span> bij je hebben.</font></font><br />
+<font color="#000000"><font color="#000000">De <span style="color: rgb(255, 0, 0);"><strong>aanwezigheid van &#39;andere&#39; zaken zoals gsm ... wordt als fraude beschouwd!</strong></span><br />
+Je kan je jas, gsm etc kwijt aan de voorkant, zijkant van het auditorium.<br />
+<br />
+Het nummer dat op de aanwezigheidslijst&nbsp;voor je naam staat, dien je in de rechterbovenhoek van je&nbsp;test te vermelden. Onthoud deze dus goed.</font></font></span></span></div>
+
+<div dir="ltr"><span style="font-family: tahoma,geneva,sans-serif;"><span style="font-size: 12px;">Duid de naam van de lesgever (Tonesi of Van Thielen) aan!<br />
+<br />
+<font color="#000000"><font color="#000000">Leerstof te kennen:</font></font><br />
+Hoofdstuk 1: Complexe getallen. Alles.<br />
+Hoofdstuk 2: Vectoren. Alles.<br />
+Hoofdstuk 3: Classificatie van tweedegraads krommen. Alles.<br />
+Hoofdstuk 4: Ruimtemeetkunde. Alles behalve bolco&ouml;rdinaten en cilinderco&ouml;rdinaten.<br />
+Hoofdstuk 5: Functies. Alles behalve oefening 3.<br />
+Hoofdstuk 6: Continu&iuml;teit, limieten. Alles.<br />
+Hoofdstuk 7: Afgeleiden.&nbsp;&nbsp;De onderdelen: 7.1 (Berekenen van afgeleiden);&nbsp;&nbsp;7.2 (De regel van de l&acute;H&ocirc;pital); 7.3 (Toepassingen van de afgeleiden tem de &quot;afgeleide als &quot;maat&quot; voor de aangroei (dus geen extremumvraagstuk).&nbsp;</span></span></div>
+
+<div dir="ltr">&nbsp;</div>
+
+<div dir="ltr"><span style="font-family: tahoma,geneva,sans-serif;"><span style="font-size: 12px;"><font color="#000000"><font color="#000000">Lokaalverdeling (auditoria van de <strong>Ledeganck</strong>) alfabetisch ongeacht richting</font></font></span></span></div>
+
+<div dir="ltr"><span style="font-family: tahoma,geneva,sans-serif;"><span style="font-size: 12px;">- Auditorium 1: van Aelvoet C&eacute;dric tem Goethals Ruben;</span></span></div>
+
+<div dir="ltr">
+<div><span style="font-family: tahoma,geneva,sans-serif;"><span style="font-size: 12px;"><font color="#000000"><font color="#000000">- Auditorium 2: van Goossens Bram tem Van Parys Nikita;</font></font></span></span></div>
+
+<div><span style="font-family: tahoma,geneva,sans-serif;"><span style="font-size: 12px;">- Auditorium 5: van Van Pevenage Marco tem Ysebaert Arne.</span></span></div>
+
+<div>&nbsp;</div>
+
+<div><span style="font-family: tahoma,geneva,sans-serif;"><span style="font-size: 12px;"><font color="#000000"><font color="#000000"><span style="line-height: 1.4em;">Je<strong> oplossing </strong>moet <strong>op de testbundel</strong> genoteerd worden.</span><br />
+<strong>Klad</strong> moet <strong>afzonderlijk afgegeven</strong> worden en wordt niet bekeken.<br />
+Gelieve <strong>net </strong>te schrijven. Je mag gerust met potlood werken.<br />
+Vergeet ook niet dat een juiste oplossing zonder de nodige tussenstappen <strong>geen credi</strong>t oplevert.<br />
+&nbsp;<br />
+Opgelet: onwettige, niet tijdig gesignaleerde afwezigheden resulteren in 0 op de test.<br />
+&nbsp;<br />
+Succes!<br />
+De lesgevers van wiskunde I</font></font></span></span></div>
+</div>
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">17/11/2014</div>
+
+        <a href="#collapse2083281" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">leerstof test</a>
+
+      </div>
+      <div id="collapse2083281" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste studenten,<br />
+&nbsp;<br />
+De stof voor test 1 van wiskunde I is als volgt:<br />
+&nbsp;<br />
+Hoofdstuk 1: Complexe getallen. Alles.<br />
+Hoofdstuk 2: Vectoren. Alles.<br />
+Hoofdstuk 3: Classificatie van tweedegraads krommen. Alles.<br />
+Hoofdstuk 4: Ruimtemeetkunde. Alles behalve bolco&ouml;rdinaten en cilinderco&ouml;rdinaten.<br />
+Hoofdstuk 5: Functies. Alles behalve oefening 3.<br />
+Hoofdstuk 6: Continu&iuml;teit, limieten. Alles.<br />
+Hoofdstuk 7: Afgeleiden.&nbsp;&nbsp;De onderdeelen: 7.1 (Berekenen van afgeleiden);&nbsp;&nbsp;7.2 (De regel van de l&acute;H&ocirc;pital); 7.3 (Toepassingen van de afgeleiden tem de &quot;afgeleide als &quot;maat&quot; voor de aangroei (dus geen extremumvraagstuk).<br />
+<br />
+Succes!<br />
+De lesgever wiskunde I
+        </div>
+      </div>
+    </div>
+        <div class="accordion-group  ">
+      <div class="accordion-heading">
+
+        <div class="insert_date">06/11/2014</div>
+
+        <a href="#collapse2061331" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">monitoraat</a>
+
+      </div>
+      <div id="collapse2061331" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Beste studenten,<br />
+<br />
+Vanaf week 9 (m.a.w. vanaf 19 november) is er monitoraat wiskunde op dinsdag en op <strong>woensdag</strong> (in plaats van donderdag) van 12u30 tot 13u30 in lokaal C2.002.<br />
+<br />
+Vriendelijke groeten,<br />
+de docenten wiskunde I<br />
+&nbsp;
+        </div>
+      </div>
+    </div>
+      </div>
+
+
+  <div class="pagination right">
+    <ul>
+                  <li>
+        <a href="?offset=10"><i class="icon-chevron-right"></i></a>
+      </li>
+          </ul>
+  </div>
+
+
+
+      </div> <!-- /container -->
+
+
+      <div class="push"></div>
+
+    </div> <!-- /wrapper -->
+
+
+
+
+    <div class="footer">
+
+      <div class="container">
+
+        <hr>
+
+        <footer>
+          <div class="pull-right"><a href="https://minerva.ugent.be?nomobile=true">Naar Volledige Site</a></div>
+          <p>&copy; 2015 - Universiteit Gent</p>
+        </footer>
+
+      </div>
+
+    </div>
+
+    <script src="/mobile/js/bootstrap.js"></script>
+    <!-- Piwik -->
+      <script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(["trackPageView"]);
+	  _paq.push(["enableLinkTracking"]);
+	
+	  (function() {
+	    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik1.ugent.be/piwik/";
+        _paq.push(["setTrackerUrl", u +"piwik.php"]);
+        _paq.push(["setSiteId", "13"]);
+	    var d=document, g=d.createElement("script"),
+	  s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+	  g.defer=true; g.async=true; g.src=u+"piwik.js";
+	  s.parentNode.insertBefore(g,s); })(); 
+      </script>
+    <!-- End Piwik Code -->
+  </body>
+</html>
