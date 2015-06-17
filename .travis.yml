@@ -7,8 +7,9 @@ jdk:
 
 before_script:
   - rm /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
-  - echo "username="+$username > /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
-  - echo "password="+$password >> /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
+  - echo "username="$USERNAME > /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
+  - cat /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
+  - echo "password="$PASSWORD >> /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
 
 script:
  - cd /home/travis/build/pielambr/Minerva4J
