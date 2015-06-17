@@ -29,7 +29,6 @@ public class AnnouncementParser {
      * @return Returns a list of announcements for this course
      */
     public static List<Announcement> getAnnouncements(Course course, HttpBrowser browser) {
-        final List<Announcement> announcements = new ArrayList<Announcement>();
         HttpRequest request = HttpRequest.get(Constants.COURSE_URL + course.getCode() + Constants.ANNOUNCEMENT);
         browser.sendRequest(request);
         Jerry coursePage;
@@ -38,7 +37,17 @@ public class AnnouncementParser {
         } catch (UnsupportedEncodingException e) {
             coursePage = Jerry.jerry(browser.getHttpResponse().body());
         }
-        coursePage.$(Constants.ANNOUNCEMENT_LIST).each(new JerryFunction() {
+        return parseAnnouncements(coursePage);
+    }
+
+    /**
+     * Parses the given Jerry object to a list of announcements
+     * @param page The Jerry object to be parsed
+     * @return A list of announcements
+     */
+    private static List<Announcement> parseAnnouncements(Jerry page) {
+        final List<Announcement> announcements = new ArrayList<Announcement>();
+        page.$(Constants.ANNOUNCEMENT_LIST).each(new JerryFunction() {
             public boolean onNode(Jerry jerry, int i) {
                 Announcement announcement = parseAnnouncement(jerry);
                 if(announcement != null) {
