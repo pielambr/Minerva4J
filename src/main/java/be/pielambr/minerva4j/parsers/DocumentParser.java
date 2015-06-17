@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  */
 public class DocumentParser {
 
-    private final static Pattern DOCUMENT_REGEX = Pattern.compile("(var document_tree = )([^\\n]+)");
+    private final static Pattern DOCUMENT_REGEX = Pattern.compile("(var document_tree = )(.*\\s*)(var course_url = )");
 
     /**
      * Returns a list of documents for the given course
@@ -52,7 +52,7 @@ public class DocumentParser {
         if(head != null){
             Matcher m = DOCUMENT_REGEX.matcher(head);
             if(m.find()){
-                String json = m.group(2).trim().substring(0, m.group(2).length() - 2);
+                String json = m.group(2).trim().substring(0, m.group(2).trim().length() - 1).trim();
                 JSONDocument jsonDocument = new Gson().fromJson(json, JSONDocument.class);
                 if(jsonDocument!= null && jsonDocument.getType().equals(Constants.TYPE_ROOT)){
                     if(jsonDocument.getItems() != null) {
