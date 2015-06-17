@@ -6,11 +6,11 @@ jdk:
   - oraclejdk8
 
 before_script:
-  - rm /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
-  - echo "username="$USERNAME > /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
-  - cat /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
-  - echo "password="$PASSWORD >> /home/travis/build/pielambr/Minerva4J/src/test/resources/settings.properties
+  - rm src/test/resources/settings.properties
+  - touch src/test/resources/settings.properties
+  - echo "username="$USERNAME >> src/test/resources/settings.properties
+  - cat src/test/resources/settings.properties
+  - echo "password="$PASSWORD >> src/test/resources/settings.properties
 
 script:
- - cd /home/travis/build/pielambr/Minerva4J
  - mvn test -B
