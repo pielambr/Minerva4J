@@ -9,7 +9,6 @@ before_script:
   - rm src/test/resources/settings.properties
   - touch src/test/resources/settings.properties
   - echo "username="$USERNAME >> src/test/resources/settings.properties
-  - cat src/test/resources/settings.properties
   - echo "password="$PASSWORD >> src/test/resources/settings.properties
 
 script:

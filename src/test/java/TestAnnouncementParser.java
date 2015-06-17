@@ -41,8 +41,10 @@ public class TestAnnouncementParser {
             in.close();
         } catch (FileNotFoundException e) {
             System.out.println("HTML file not found");
+            Assert.fail();
         } catch (IOException e) {
             System.out.println("Error closing HTML file");
+            Assert.fail();
         }
     }
 
@@ -61,10 +63,13 @@ public class TestAnnouncementParser {
             Assert.assertEquals(DATE_FORMAT.parse("06/11/2014"), announcements.get(9).getPosted());
         } catch (NoSuchMethodException e) {
             System.out.println("Method to be tested was not found");
+            Assert.fail();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+            Assert.fail();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 

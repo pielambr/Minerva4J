@@ -56,10 +56,13 @@ public class TestDocumentParser {
             Assert.assertEquals(documents.get(12).getId(), "13889171");
         } catch (NoSuchMethodException e) {
             System.out.println("Method to be tested was not found");
+            Assert.fail();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+            Assert.fail();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }
