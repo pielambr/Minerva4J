@@ -59,7 +59,7 @@ public class AnnouncementParser {
         String dateString = announcement.$(Constants.ANNOUNCEMENT_DATE).text();
         Date date = parseDate(dateString);
         String title = announcement.$(Constants.ANNOUNCEMENT_TITLE).text();
-        String content = announcement.$("div.accordion-body div.accordion-inner").html();
+        String content = announcement.$(Constants.ANNOUNCEMENT_BODY).html();
         Announcement a = new Announcement(content, title, date);
         return a;
     }

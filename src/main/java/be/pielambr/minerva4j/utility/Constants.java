@@ -16,5 +16,8 @@ public class Constants {
     public static final String ANNOUNCEMENT_LIST = "div.course-announcements div.accordion-group";
     public static final String ANNOUNCEMENT_DATE = "div.insert_date";
     public static final String ANNOUNCEMENT_TITLE = "a.accordion-toggle";
-    public static final String ANNOUNCEMENT_BODY = "";
+    public static final String ANNOUNCEMENT_BODY = "div.accordion-body div.accordion-inner";
+    public static final String TYPE_ROOT = "root";
+    public static final String TYPE_FOLDER = "folder";
+    public static final String TYPE_FILE = "file";
 }

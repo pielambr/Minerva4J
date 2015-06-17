@@ -7,9 +7,9 @@ import java.util.Date;
  */
 public class Announcement implements Comparable<Announcement> {
 
-    private String _content;
-    private String _title;
-    private Date _posted;
+    private final String _content;
+    private final String _title;
+    private final Date _posted;
 
     /**
      * Default constructor for announcements
