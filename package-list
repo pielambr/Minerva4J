@@ -2,4 +2,5 @@ be.pielambr.minerva4j.beans
 be.pielambr.minerva4j.client
 be.pielambr.minerva4j.exceptions
 be.pielambr.minerva4j.parsers
+be.pielambr.minerva4j.parsers.json
 be.pielambr.minerva4j.utility
