@@ -34,7 +34,8 @@ You can search the central repository for Minerva4J, or use this in your pom.xml
 ```
 
 ## Running tests
-Pretty straight forward, just run
+Before running the tests, fill out your username and password in the src/test/resources/settings.properties file.
+After you have done that it's pretty straight forward, just run;
 ```
 mvn test
 ```
