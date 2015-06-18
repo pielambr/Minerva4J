@@ -40,4 +40,4 @@ mvn test
 ```
 
 ## Suggestions, issues, thoughts, concerns
-If any issues arise, then you can always make a github issue, I will probably read it within a few days. You can also send me a tweet @Pieterja_n
+If any issues arise, then you can always make a github issue, I will probably read it within a few days. You can also send me a tweet [@Pieterjan_] (https://twitter.com/Pieterjan_)
