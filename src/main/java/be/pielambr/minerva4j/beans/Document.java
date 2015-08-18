@@ -61,4 +61,16 @@ public class Document {
         int result = _id.hashCode();
         return 11 * result + _filename.hashCode();
     }
+
+    /**
+     * Returns a basic String representation of a Document
+     *
+     * @return String representation of a Document
+     */
+    @Override
+    public String toString() {
+        return "Document{" +
+                "filename='" + _filename + '\'' +
+                '}';
+    }
 }

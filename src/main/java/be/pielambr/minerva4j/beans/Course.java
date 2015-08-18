@@ -61,4 +61,17 @@ public class Course {
         return _code.equals(course._code)
                 && _name.equals(course._name);
     }
+
+    /**
+     * Returns a basic String representation of a Course
+     *
+     * @return String representation of a Course
+     */
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + _name + '\'' +
+                ", code='" + _code + '\'' +
+                '}';
+    }
 }
