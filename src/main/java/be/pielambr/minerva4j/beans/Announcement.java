@@ -85,4 +85,17 @@ public class Announcement implements Comparable<Announcement> {
         result = 11 * result + _title.hashCode();
         return 11 * result + _posted.hashCode();
     }
+
+    /**
+     * Returns a basic String representation of an Announcement
+     *
+     * @return String representation of an Announcement
+     */
+    @Override
+    public String toString() {
+        return "Announcement{" +
+                "title='" + _title + '\'' +
+                ", posted=" + _posted +
+                '}';
+    }
 }
