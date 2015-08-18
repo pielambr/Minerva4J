@@ -123,6 +123,10 @@ public class Client {
         return element.getAsJsonObject().get("url").getAsString();
     }
 
+    /**
+     * This method checks if the last request redirected us to login,
+     * meaning we have been logged out and logs us back in
+     */
     private void checkLogin() {
         if(_browser.getHttpRequest().url().contains(Constants.LOGIN_URL)) {
             HttpRequest login = HttpRequest
