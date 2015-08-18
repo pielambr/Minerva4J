@@ -85,7 +85,9 @@ public class Client {
      * @return Returns a list of announcements
      */
     public List<Announcement> getAnnouncements(Course course) {
-        return AnnouncementParser.getAnnouncements(_browser, course);
+        List<Announcement> announcements = AnnouncementParser.getAnnouncements(_browser, course);
+        checkLogin();
+        return announcements;
     }
 
     /**
@@ -102,7 +104,9 @@ public class Client {
      * @return A list of documents
      */
     public List<Document> getDocuments(Course course) {
-        return DocumentParser.getDocuments(_browser, course);
+        List<Document> documents = DocumentParser.getDocuments(_browser, course);
+        checkLogin();
+        return documents;
     }
 
     /**
@@ -117,6 +121,16 @@ public class Client {
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(_browser.getHttpResponse().bodyText());
         return element.getAsJsonObject().get("url").getAsString();
+    }
+
+    private void checkLogin() {
+        if(_browser.getHttpRequest().url().contains(Constants.LOGIN_URL)) {
+            HttpRequest login = HttpRequest
+                    .post(Constants.LOGIN_URL)
+                    .form("username", _username)
+                    .form("password", _password);
+            _browser.sendRequest(login);
+        }
     }
 
 }
