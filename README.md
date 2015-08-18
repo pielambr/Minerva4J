@@ -29,7 +29,7 @@ You can search the central repository for Minerva4J, or use this in your pom.xml
 <dependency>
     <groupId>be.pielambr</groupId>
     <artifactId>Minerva4J</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
 </dependency>
 ```
 
