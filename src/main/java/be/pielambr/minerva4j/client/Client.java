@@ -3,10 +3,12 @@ package be.pielambr.minerva4j.client;
 import be.pielambr.minerva4j.beans.Announcement;
 import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.beans.Document;
+import be.pielambr.minerva4j.beans.Event;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import be.pielambr.minerva4j.parsers.AnnouncementParser;
 import be.pielambr.minerva4j.parsers.CourseParser;
 import be.pielambr.minerva4j.parsers.DocumentParser;
+import be.pielambr.minerva4j.parsers.EventParser;
 import be.pielambr.minerva4j.utility.Constants;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -15,6 +17,7 @@ import jodd.http.HttpRequest;
 import jodd.jerry.Jerry;
 import jodd.lagarto.dom.Node;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -135,6 +138,24 @@ public class Client {
                     .form("password", _password);
             _browser.sendRequest(login);
         }
+    }
+
+    /**
+     * Returns a list of all events
+     * @return A list of all events
+     */
+    public List<Event> getEvents() {
+        return EventParser.getEvents(_browser);
+    }
+
+    /**
+     * Returns a list of all events in a timespan
+     * @param start Start of timespan
+     * @param end End of timespan
+     * @return A list of all events in a timespan
+     */
+    public List<Event> getEvents(Date start, Date end) {
+        return EventParser.getEvents(_browser, start, end);
     }
 
 }
