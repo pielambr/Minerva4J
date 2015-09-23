@@ -130,7 +130,7 @@ public class EventParser {
      */
     private static List<Event> parseEvents(Jerry page) {
         List<Event> events = new ArrayList<Event>();
-        String json = page.html();
+        String json = page.text();
         JSONEvent[] jsonEvents = new Gson().fromJson(json, JSONEvent[].class);
         for(JSONEvent e : jsonEvents) {
             events.add(new Event(e.getId(), e.getTitle(), e.getDescription(), e.getStart(), e.getEnd()));
