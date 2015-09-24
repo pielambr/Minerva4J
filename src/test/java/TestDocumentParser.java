@@ -1,15 +1,13 @@
-import be.pielambr.minerva4j.beans.Announcement;
-import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.beans.Document;
-import be.pielambr.minerva4j.client.Client;
-import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import be.pielambr.minerva4j.parsers.DocumentParser;
 import jodd.jerry.Jerry;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;

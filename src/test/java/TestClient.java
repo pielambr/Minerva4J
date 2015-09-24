@@ -1,5 +1,3 @@
-import be.pielambr.minerva4j.beans.Course;
-import be.pielambr.minerva4j.beans.Document;
 import be.pielambr.minerva4j.client.Client;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import org.junit.Assert;

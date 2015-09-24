@@ -6,7 +6,6 @@ import be.pielambr.minerva4j.utility.Constants;
 import com.google.gson.Gson;
 import jodd.http.HttpBrowser;
 import jodd.http.HttpRequest;
-import jodd.jerry.Jerry;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -92,11 +91,11 @@ public class EventParser {
     private static List<Event> getEvents(HttpBrowser browser, EventSource source) {
         HttpRequest request = HttpRequest.get(Constants.INDEX_URL + source.getURL());
         browser.sendRequest(request);
-        Jerry page;
+        String page;
         try {
-            page = Jerry.jerry(new String(browser.getHttpResponse().bodyBytes(), "UTF8"));
+            page = new String(browser.getHttpResponse().bodyBytes(), "UTF8");
         } catch (UnsupportedEncodingException ex){
-            page = Jerry.jerry(browser.getHttpResponse().body());
+            page = browser.getHttpResponse().body();
         }
         return parseEvents(page);
     }
@@ -114,11 +113,11 @@ public class EventParser {
         request.query("start", String.valueOf(start.getTime() / 1000))
                 .query("end", String.valueOf(end.getTime() / 1000));
         browser.sendRequest(request);
-        Jerry page;
+        String page;
         try {
-            page = Jerry.jerry(new String(browser.getHttpResponse().bodyBytes(), "UTF8"));
+            page = new String(browser.getHttpResponse().bodyBytes(), "UTF8");
         } catch (UnsupportedEncodingException ex){
-            page = Jerry.jerry(browser.getHttpResponse().body());
+            page = browser.getHttpResponse().body();
         }
         return parseEvents(page);
     }
@@ -128,10 +127,9 @@ public class EventParser {
      * @param page Jerry page containing the Events
      * @return Returns a list of Events found on the page
      */
-    private static List<Event> parseEvents(Jerry page) {
+    private static List<Event> parseEvents(String page) {
         List<Event> events = new ArrayList<Event>();
-        String json = page.text();
-        JSONEvent[] jsonEvents = new Gson().fromJson(json, JSONEvent[].class);
+        JSONEvent[] jsonEvents = new Gson().fromJson(page, JSONEvent[].class);
         for(JSONEvent e : jsonEvents) {
             events.add(new Event(e.getId(), e.getTitle(), e.getDescription(), e.getStart(), e.getEnd()));
         }
