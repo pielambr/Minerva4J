@@ -57,7 +57,8 @@ public class Announcement implements Comparable<Announcement> {
     }
 
     /**
-     * Returns whether two object are equal
+     * {@inheritDoc}
+     *
      * @param o The object to compare to this object
      * @return Whether both objects are equal
      */
@@ -76,7 +77,8 @@ public class Announcement implements Comparable<Announcement> {
     }
 
     /**
-     * Returns a hashcode for this announcement
+     * {@inheritDoc}
+     *
      * @return A hashcode for this announcement
      */
     @Override
@@ -87,7 +89,7 @@ public class Announcement implements Comparable<Announcement> {
     }
 
     /**
-     * Returns a basic String representation of an Announcement
+     * {@inheritDoc}
      *
      * @return String representation of an Announcement
      */
