@@ -35,7 +35,8 @@ public class Document {
     }
 
     /**
-     * Checks if two objects are the same
+     * {@inheritDoc}
+     *
      * @param o The object to compare to
      * @return Whether these two objects are equal
      */
@@ -53,7 +54,8 @@ public class Document {
     }
 
     /**
-     * Returns a hashcode for this document
+     * {@inheritDoc}
+     *
      * @return A hashcode for this document
      */
     @Override
@@ -63,7 +65,7 @@ public class Document {
     }
 
     /**
-     * Returns a basic String representation of a Document
+     * {@inheritDoc}
      *
      * @return String representation of a Document
      */

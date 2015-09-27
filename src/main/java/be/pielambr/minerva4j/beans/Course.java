@@ -35,7 +35,8 @@ public class Course {
     }
 
     /**
-     * Returns the hashcode for the course
+     * {@inheritDoc}
+     *
      * @return The hashcode for the course
      */
     @Override
@@ -45,7 +46,8 @@ public class Course {
     }
 
     /**
-     * Looks if this object is equal to another
+     * {@inheritDoc}
+     *
      * @param o The other object, to check for equality
      * @return Whether both objects are equal
      */
@@ -63,7 +65,7 @@ public class Course {
     }
 
     /**
-     * Returns a basic String representation of a Course
+     * {@inheritDoc}
      *
      * @return String representation of a Course
      */

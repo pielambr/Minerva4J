@@ -61,12 +61,55 @@ public class Event {
         return _start;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param o The object to compare to
+     * @return Whether these two objects are equal
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Event event = (Event) o;
+
+        if (_id != null ? !_id.equals(event._id) : event._id != null) return false;
+        if (_title != null ? !_title.equals(event._title) : event._title != null) return false;
+        if (_description != null ? !_description.equals(event._description) : event._description != null) return false;
+        if (!_start.equals(event._start)) return false;
+        return _end.equals(event._end);
+
+    }
 
     /**
-     * Returns the end date of this event
-     * @return The end date of this event
+     * {@inheritDoc}
+     *
+     * @return A hashcode for this event
      */
-    public Date getEnd() {
-        return _end;
+    @Override
+    public int hashCode() {
+        int result = _id != null ? _id.hashCode() : 0;
+        result = 31 * result + (_title != null ? _title.hashCode() : 0);
+        result = 31 * result + (_description != null ? _description.hashCode() : 0);
+        result = 31 * result + (_start.hashCode());
+        result = 31 * result + (_end.hashCode());
+        return result;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return String representation of an Event
+     */
+    @Override
+    public String toString() {
+        return "Event{" +
+                "_id='" + _id + '\'' +
+                ", _title='" + _title + '\'' +
+                ", _description='" + _description + '\'' +
+                ", _start=" + _start +
+                ", _end=" + _end +
+                '}';
     }
 }
