@@ -4,17 +4,19 @@ Java library for Minerva (UGent) - Unofficial
 [![Build Status](https://travis-ci.org/pielambr/Minerva4J.svg?branch=master)](https://travis-ci.org/pielambr/Minerva4J)
 
 ## Using Minerva4J
-This library is pretty easy to use. All you do is basically this;
+This library is pretty easy to use.
 ```
-Client client = new Client(username, password)
+MinervaClient client = new MinervaClient(username, password)
 client.connect()
 ````
 This makes a new client, with your username and password. 
-Afterwards you try to login using connect.
+Afterwards you try to login using connect. If the login fails, it throws an exception.
 ```
 client.getCourses();
 client.getDocuments(Course course);
 client.getAnnouncements(Course course);
+client.getEvents();
+client.getEvents(Date start, Date end);
 ```
 After that it's easy to get the content that you want. 
 You can find more information in the public API.
@@ -29,7 +31,7 @@ You can search the central repository for Minerva4J, or use this in your pom.xml
 <dependency>
     <groupId>be.pielambr</groupId>
     <artifactId>Minerva4J</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
 </dependency>
 ```
 
