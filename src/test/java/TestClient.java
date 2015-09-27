@@ -1,4 +1,4 @@
-import be.pielambr.minerva4j.client.Client;
+import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -44,14 +44,14 @@ public class TestClient {
     @Test
     public void testConnect() {
         // This should not fail
-        Client client = new Client(_username, _password);
+        MinervaClient client = new MinervaClient(_username, _password);
         try {
             client.connect();
         } catch (LoginFailedException e) {
             Assert.fail("Login failed");
         }
         // But this should though
-        client = new Client("john", "doe");
+        client = new MinervaClient("john", "doe");
         try {
             client.connect();
             Assert.fail("Login should have failed");

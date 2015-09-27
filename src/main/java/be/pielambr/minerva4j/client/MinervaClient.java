@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by Pieterjan Lambrecht on 15/06/2015.
  */
-public class Client {
+public class MinervaClient {
 
     private final HttpBrowser _browser;
 
@@ -35,7 +35,7 @@ public class Client {
      * @param username Username for the user
      * @param password Password for the user
      */
-    public Client(String username, String password) {
+    public MinervaClient(String username, String password) {
         _username = username;
         _password = password;
         _browser = new HttpBrowser();
