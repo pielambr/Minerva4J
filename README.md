@@ -1,4 +1,6 @@
 # Minerva4J
+
+[![Join the chat at https://gitter.im/pielambr/Minerva4J](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pielambr/Minerva4J?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Java library for Minerva (UGent) - Unofficial
 
 [![Build Status](https://travis-ci.org/pielambr/Minerva4J.svg?branch=master)](https://travis-ci.org/pielambr/Minerva4J)
