@@ -62,6 +62,14 @@ public class Event {
     }
 
     /**
+     * Gets the end date of this event
+     * @return The end date of this event
+     */
+    public Date getEnd() {
+        return _end;
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @param o The object to compare to

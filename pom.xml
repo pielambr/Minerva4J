@@ -6,7 +6,7 @@
 
     <groupId>be.pielambr</groupId>
     <artifactId>Minerva4J</artifactId>
-    <version>0.4</version>
+    <version>0.4.1</version>
 
     <name>Minerva4J</name>
     <description>Unofficial Java library for Minerva - UGent</description>

@@ -34,7 +34,7 @@ You can search the central repository for Minerva4J, or use this in your pom.xml
 <dependency>
     <groupId>be.pielambr</groupId>
     <artifactId>Minerva4J</artifactId>
-    <version>0.4</version>
+    <version>0.4.1</version>
 </dependency>
 ```
 
