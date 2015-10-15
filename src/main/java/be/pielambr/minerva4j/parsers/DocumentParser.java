@@ -2,13 +2,15 @@ package be.pielambr.minerva4j.parsers;
 
 import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.beans.Document;
+import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.parsers.json.JSONDocument;
 import be.pielambr.minerva4j.utility.Constants;
 import com.google.gson.Gson;
-import jodd.http.HttpBrowser;
-import jodd.http.HttpRequest;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import jodd.jerry.Jerry;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +27,22 @@ public class DocumentParser {
 
     /**
      * Returns a list of documents for the given course
-     * @param browser An instance of the Jerry HttpBrowser
+     * @param client An instance of the MinervaClient client
      * @param course The course of which the documents need to be retrieved
      * @return A list of documents
      */
-    public static List<Document> getDocuments(HttpBrowser browser, Course course){
-        HttpRequest request = HttpRequest.get(Constants.COURSE_URL + course.getCode() + Constants.DOCUMENT);
-        browser.sendRequest(request);
+    public static List<Document> getDocuments(MinervaClient client, Course course) throws IOException {
+        Request request = new Request.Builder()
+                .url(Constants.COURSE_URL + course.getCode() + Constants.DOCUMENT)
+                .build();
+        Response response = client.getClient().newCall(request).execute();
         Jerry page;
         try {
-            page = Jerry.jerry(new String(browser.getHttpResponse().bodyBytes(), "UTF8"));
+            page = Jerry.jerry(new String(response.body().bytes(), "UTF8"));
         } catch (UnsupportedEncodingException ex){
-            page = Jerry.jerry(browser.getHttpResponse().body());
+            page = Jerry.jerry(response.body().string());
         }
+        client.checkLogin(response);
         return parseDocuments(page);
     }
 

@@ -2,12 +2,14 @@ package be.pielambr.minerva4j.parsers;
 
 import be.pielambr.minerva4j.beans.Announcement;
 import be.pielambr.minerva4j.beans.Course;
+import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.utility.Constants;
-import jodd.http.HttpBrowser;
-import jodd.http.HttpRequest;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import jodd.jerry.Jerry;
 import jodd.jerry.JerryFunction;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,18 +27,21 @@ public class AnnouncementParser {
     /**
      * Parses the course page for the given course and returns the announcements
      * @param course The course for which the announcements need to be retrieved
-     * @param browser An instance of the Jerry browser
+     * @param client The MinervaClient instance
      * @return Returns a list of announcements for this course
      */
-    public static List<Announcement> getAnnouncements(HttpBrowser browser, Course course) {
-        HttpRequest request = HttpRequest.get(Constants.COURSE_URL + course.getCode() + Constants.ANNOUNCEMENT);
-        browser.sendRequest(request);
+    public static List<Announcement> getAnnouncements(MinervaClient client, Course course) throws IOException {
+        Request request = new Request.Builder()
+                .url(Constants.COURSE_URL + course.getCode() + Constants.ANNOUNCEMENT)
+                .build();
+        Response response = client.getClient().newCall(request).execute();
         Jerry coursePage;
         try {
-            coursePage = Jerry.jerry(new String(browser.getHttpResponse().bodyBytes(), "UTF-8"));
+            coursePage = Jerry.jerry(new String(response.body().bytes(), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            coursePage = Jerry.jerry(browser.getHttpResponse().body());
+            coursePage = Jerry.jerry(response.body().string());
         }
+        client.checkLogin(response);
         return parseAnnouncements(coursePage);
     }
 

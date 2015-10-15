@@ -1,12 +1,14 @@
 package be.pielambr.minerva4j.parsers;
 
 import be.pielambr.minerva4j.beans.Event;
+import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.parsers.json.JSONEvent;
 import be.pielambr.minerva4j.utility.Constants;
 import com.google.gson.Gson;
-import jodd.http.HttpBrowser;
-import jodd.http.HttpRequest;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,68 +58,72 @@ public class EventParser {
 
     /**
      * This method returns all Events
-     * @param browser HttpBrowser with the cookies that we'll use for requests
+     * @param client An instance of the MinervaClient client
      * @return Returns a list of Events for all EventSources
      */
-    public static List<Event> getEvents(HttpBrowser browser) {
+    public static List<Event> getEvents(MinervaClient client) throws IOException {
         List<Event> events = new ArrayList<Event>();
         for(EventSource s : EventSource.getSources()) {
-            events.addAll(getEvents(browser, s));
+            events.addAll(getEvents(client, s));
         }
         return events;
     }
 
     /**
      * This method returns all Events for certain timespan
-     * @param browser HttpBrowser used in request
+     * @param client An instance of the MinervaClient client
      * @param start Start date of timespan
      * @param end End date of timespan
      * @return Returns list of events in this timespan
      */
-    public static List<Event> getEvents(HttpBrowser browser, Date start, Date end) {
+    public static List<Event> getEvents(MinervaClient client, Date start, Date end) throws IOException {
         List<Event> events = new ArrayList<Event>();
         for(EventSource s : EventSource.getSources()) {
-            events.addAll(getEvents(browser, s, start, end));
+            events.addAll(getEvents(client, s, start, end));
         }
         return events;
     }
 
     /**
      * Retrieves the Events from given source with HttpBrowser provided
-     * @param browser HttpBrowser used for the requests
+     * @param client An instance of the MinervaClient client
      * @param source EventSource for which we should pull events
      * @return Returns a list of Events for this EventSource
      */
-    private static List<Event> getEvents(HttpBrowser browser, EventSource source) {
-        HttpRequest request = HttpRequest.get(Constants.INDEX_URL + source.getURL());
-        browser.sendRequest(request);
+    private static List<Event> getEvents(MinervaClient client, EventSource source) throws IOException {
+        Request request = new Request.Builder()
+                .url(Constants.INDEX_URL + source.getURL())
+                .build();
+        Response response = client.getClient().newCall(request).execute();
         String page;
         try {
-            page = new String(browser.getHttpResponse().bodyBytes(), "UTF8");
+            page = new String(response.body().bytes(), "UTF8");
         } catch (UnsupportedEncodingException ex){
-            page = browser.getHttpResponse().body();
+            page = response.body().string();
         }
         return parseEvents(page);
     }
 
     /**
      * Retrieves the Events from given source with HttpBrowser provided
-     * @param browser HttpBrowser used for the requests
+     * @param client An instance of the MinervaClient client
      * @param source EventSource for which we should pull events
      * @param start Start date for events to retrieve
      * @param end End date for events to retrieve
      * @return Returns a list of Events for this EventSource
      */
-    private static List<Event> getEvents(HttpBrowser browser, EventSource source, Date start, Date end) {
-        HttpRequest request = HttpRequest.get(Constants.INDEX_URL + source.getURL());
-        request.query("start", String.valueOf(start.getTime() / 1000))
-                .query("end", String.valueOf(end.getTime() / 1000));
-        browser.sendRequest(request);
+    private static List<Event> getEvents(MinervaClient client, EventSource source, Date start, Date end) throws IOException {
+        String params = "/?start=" + String.valueOf(start.getTime() / 1000) +
+                "&end=" + String.valueOf(end.getTime() / 1000);
+        Request request = new Request.Builder()
+                .url(Constants.INDEX_URL + source.getURL() + params)
+                .build();
+        Response response = client.getClient().newCall(request).execute();
         String page;
         try {
-            page = new String(browser.getHttpResponse().bodyBytes(), "UTF8");
+            page = new String(response.body().bytes(), "UTF8");
         } catch (UnsupportedEncodingException ex){
-            page = browser.getHttpResponse().body();
+            page = response.body().string();
         }
         return parseEvents(page);
     }

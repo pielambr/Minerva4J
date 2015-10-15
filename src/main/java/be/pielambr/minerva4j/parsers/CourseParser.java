@@ -1,13 +1,15 @@
 package be.pielambr.minerva4j.parsers;
 
 import be.pielambr.minerva4j.beans.Course;
+import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.utility.Constants;
-import jodd.http.HttpBrowser;
-import jodd.http.HttpRequest;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import jodd.jerry.Jerry;
 import jodd.jerry.JerryFunction;
 import jodd.lagarto.dom.Node;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +20,15 @@ public class CourseParser {
 
     /**
      * Retrieves a list of courses from the Minerva index page
-     * @param browser An instance of the Minerva browser
+     * @param client An instance of the MinervaClient client
      * @return A list of courses on the Minerva index page
      */
-    public static List<Course> getCourses(HttpBrowser browser) {
-        HttpRequest index = HttpRequest.get(Constants.INDEX_URL);
-        browser.sendRequest(index);
-        return parseCourses(Jerry.jerry(browser.getHttpResponse().body()));
+    public static List<Course> getCourses(MinervaClient client) throws IOException {
+        Request index = new Request.Builder()
+                .url(Constants.INDEX_URL)
+                .build();
+        Response response = client.getClient().newCall(index).execute();
+        return parseCourses(Jerry.jerry(response.body().string()));
     }
 
     /**
