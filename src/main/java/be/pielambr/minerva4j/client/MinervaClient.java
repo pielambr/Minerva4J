@@ -15,13 +15,14 @@ import com.google.gson.JsonParser;
 import com.squareup.okhttp.*;
 import jodd.jerry.Jerry;
 import jodd.lagarto.dom.Node;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
-import java.util.Date;
-import java.util.List;
+import java.net.URI;
+import java.util.*;
 
 /**
  * Created by Pieterjan Lambrecht on 15/06/2015.
@@ -29,6 +30,8 @@ import java.util.List;
 public class MinervaClient {
 
     private final OkHttpClient _browser;
+    private Map<String, List<String>> _map;
+    private boolean loggedin;
 
     private final String _username;
     private final String _password;
@@ -42,12 +45,28 @@ public class MinervaClient {
         _username = username;
         _password = password;
         _browser = new OkHttpClient();
-        _browser.setFollowRedirects(true);
+        _browser.setFollowRedirects(false);
         // Save cookies
-        CookieManager cookieManager = new CookieManager();
-        CookieHandler.setDefault(cookieManager);
-        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-        _browser.setCookieHandler(cookieManager);
+        _browser.setCookieHandler(new CookieHandler() {
+            @Override
+            public Map<String, List<String>> get(URI uri, Map<String, List<String>> map) throws IOException {
+                if(!loggedin && map.containsKey("Location") && map.get("Location").get(0).equals("/mobile/")){
+                    _map = new HashMap<String, List<String>>();
+                    _map.put("Cookie", map.get("Set-Cookie"));
+                    loggedin = true;
+                }
+                return _map != null? _map :map;
+            }
+
+            @Override
+            public void put(URI uri, Map<String, List<String>> map) throws IOException {
+                if(!loggedin && map.containsKey("Location") && map.get("Location").get(0).equals("/mobile/")){
+                    _map = new HashMap<String, List<String>>();
+                    _map.put("Cookie", map.get("Set-Cookie"));
+                    loggedin = true;
+                }
+            }
+        });
     }
 
     /**
@@ -69,6 +88,8 @@ public class MinervaClient {
                 .post(formBody)
                 .build();
         _browser.newCall(login).execute();
+        return;
+
     }
 
     /**
@@ -84,7 +105,6 @@ public class MinervaClient {
         Response response = _browser.newCall(index).execute();
         // Check to see if we find a course list
         if (response != null) {
-            System.out.println(response.body().string());
             Jerry i = Jerry.jerry(response.body().string());
             Node node = i.$(Constants.COURSE_LIST).get(0);
             if (node != null) {
