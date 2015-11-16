@@ -62,7 +62,7 @@ public class HttpConnectionBuilder {
             connection.setDoOutput(true);
         }
         connection.setRequestMethod(method.getName());
-        connection.setInstanceFollowRedirects(true);
+        connection.setInstanceFollowRedirects(false);
         if(cookie != null) {
             connection.addRequestProperty(COOKIES_HEADER, cookie);
         }

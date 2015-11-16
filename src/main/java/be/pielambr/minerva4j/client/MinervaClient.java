@@ -54,7 +54,7 @@ public class MinervaClient {
     }
 
     private void login() throws IOException {
-        String loginRequest = URLEncoder.encode("username=" + _username + "&password=" + _password, "UTF-8");
+        String loginRequest = "username=" + _username + "&password=" + _password;
         _browser.post(Constants.LOGIN_URL, loginRequest);
         return;
 
@@ -129,7 +129,8 @@ public class MinervaClient {
      * meaning we have been logged out and logs us back in
      */
     public void checkLogin(MinervaClient client) throws IOException {
-        if(client.getClient().getConnection().getURL().toString().contains(Constants.LOGIN_URL)) {
+        if(client.getClient().getConnection().getURL().toString().contains(Constants.LOGIN_URL)
+                || client.getClient().getConnection().getHeaderField("Location").contains(Constants.LOGIN_URL)) {
             login();
         }
     }
