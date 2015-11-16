@@ -34,7 +34,7 @@ public class HttpConnectionBuilder {
     }
 
     private HttpConnectionBuilder() {
-
+        path = new StringBuilder();
     }
 
     public static HttpConnectionBuilder builder() {
