@@ -50,7 +50,7 @@ public class HttpClient {
         StringBuilder sb = new StringBuilder();
         String output;
         while ((output = br.readLine()) != null) {
-            sb.append(output);
+            sb.append(output).append("\n");
         }
         return sb.toString();
     }
