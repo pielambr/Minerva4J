@@ -6,8 +6,6 @@ import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.parsers.json.JSONDocument;
 import be.pielambr.minerva4j.utility.Constants;
 import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import jodd.jerry.Jerry;
 
 import java.io.IOException;
@@ -32,17 +30,14 @@ public class DocumentParser {
      * @return A list of documents
      */
     public static List<Document> getDocuments(MinervaClient client, Course course) throws IOException {
-        Request request = new Request.Builder()
-                .url(Constants.COURSE_URL + course.getCode() + Constants.DOCUMENT)
-                .build();
-        Response response = client.getClient().newCall(request).execute();
+       String response = client.getClient().get(Constants.COURSE_URL + course.getCode() + Constants.DOCUMENT);
         Jerry page;
         try {
-            page = Jerry.jerry(new String(response.body().bytes(), "UTF8"));
+            page = Jerry.jerry(new String(response.getBytes(), "UTF8"));
         } catch (UnsupportedEncodingException ex){
-            page = Jerry.jerry(response.body().string());
+            page = Jerry.jerry(response);
         }
-        client.checkLogin(response);
+        client.checkLogin(client);
         return parseDocuments(page);
     }
 

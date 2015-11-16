@@ -3,8 +3,6 @@ package be.pielambr.minerva4j.parsers;
 import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.utility.Constants;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import jodd.jerry.Jerry;
 import jodd.jerry.JerryFunction;
 import jodd.lagarto.dom.Node;
@@ -24,11 +22,8 @@ public class CourseParser {
      * @return A list of courses on the Minerva index page
      */
     public static List<Course> getCourses(MinervaClient client) throws IOException {
-        Request index = new Request.Builder()
-                .url(Constants.INDEX_URL)
-                .build();
-        Response response = client.getClient().newCall(index).execute();
-        return parseCourses(Jerry.jerry(response.body().string()));
+        String response = client.getClient().get(Constants.INDEX_URL);
+        return parseCourses(Jerry.jerry(response));
     }
 
     /**

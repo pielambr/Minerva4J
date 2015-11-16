@@ -4,8 +4,6 @@ import be.pielambr.minerva4j.beans.Announcement;
 import be.pielambr.minerva4j.beans.Course;
 import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.utility.Constants;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import jodd.jerry.Jerry;
 import jodd.jerry.JerryFunction;
 
@@ -31,17 +29,14 @@ public class AnnouncementParser {
      * @return Returns a list of announcements for this course
      */
     public static List<Announcement> getAnnouncements(MinervaClient client, Course course) throws IOException {
-        Request request = new Request.Builder()
-                .url(Constants.COURSE_URL + course.getCode() + Constants.ANNOUNCEMENT)
-                .build();
-        Response response = client.getClient().newCall(request).execute();
+        String response = client.getClient().get(Constants.COURSE_URL + course.getCode() + Constants.ANNOUNCEMENT);
         Jerry coursePage;
         try {
-            coursePage = Jerry.jerry(new String(response.body().bytes(), "UTF-8"));
+            coursePage = Jerry.jerry(new String(response.getBytes(), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            coursePage = Jerry.jerry(response.body().string());
+            coursePage = Jerry.jerry(response);
         }
-        client.checkLogin(response);
+        client.checkLogin(client);
         return parseAnnouncements(coursePage);
     }
 

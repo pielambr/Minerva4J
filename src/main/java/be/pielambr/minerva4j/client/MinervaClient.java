@@ -12,24 +12,21 @@ import be.pielambr.minerva4j.parsers.EventParser;
 import be.pielambr.minerva4j.utility.Constants;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.squareup.okhttp.*;
 import jodd.jerry.Jerry;
 import jodd.lagarto.dom.Node;
-import sun.rmi.runtime.Log;
 
 import java.io.IOException;
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
-import java.net.URI;
-import java.util.*;
+import java.net.URLEncoder;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Pieterjan Lambrecht on 15/06/2015.
  */
 public class MinervaClient {
 
-    private final OkHttpClient _browser;
+    private final HttpClient _browser;
     private Map<String, List<String>> _map;
     private boolean loggedin;
 
@@ -44,29 +41,7 @@ public class MinervaClient {
     public MinervaClient(String username, String password) {
         _username = username;
         _password = password;
-        _browser = new OkHttpClient();
-        _browser.setFollowRedirects(false);
-        // Save cookies
-        _browser.setCookieHandler(new CookieHandler() {
-            @Override
-            public Map<String, List<String>> get(URI uri, Map<String, List<String>> map) throws IOException {
-                if(!loggedin && map.containsKey("Location") && map.get("Location").get(0).equals("/mobile/")){
-                    _map = new HashMap<String, List<String>>();
-                    _map.put("Cookie", map.get("Set-Cookie"));
-                    loggedin = true;
-                }
-                return _map != null? _map :map;
-            }
-
-            @Override
-            public void put(URI uri, Map<String, List<String>> map) throws IOException {
-                if(!loggedin && map.containsKey("Location") && map.get("Location").get(0).equals("/mobile/")){
-                    _map = new HashMap<String, List<String>>();
-                    _map.put("Cookie", map.get("Set-Cookie"));
-                    loggedin = true;
-                }
-            }
-        });
+        _browser = new HttpClient();
     }
 
     /**
@@ -79,15 +54,8 @@ public class MinervaClient {
     }
 
     private void login() throws IOException {
-        RequestBody formBody = new FormEncodingBuilder()
-                .add("username", _username)
-                .add("password", _password)
-                .build();
-        Request login = new Request.Builder()
-                .url(Constants.LOGIN_URL)
-                .post(formBody)
-                .build();
-        _browser.newCall(login).execute();
+        String loginRequest = URLEncoder.encode("username=" + _username + "&password=" + _password, "UTF-8");
+        _browser.post(Constants.LOGIN_URL, loginRequest);
         return;
 
     }
@@ -99,13 +67,10 @@ public class MinervaClient {
      */
     public boolean verifyLogin() throws LoginFailedException, IOException {
         // Check index page
-        Request index = new Request.Builder()
-                .url(Constants.INDEX_URL)
-                .build();
-        Response response = _browser.newCall(index).execute();
+        String response = _browser.get(Constants.INDEX_URL);
         // Check to see if we find a course list
         if (response != null) {
-            Jerry i = Jerry.jerry(response.body().string());
+            Jerry i = Jerry.jerry(response);
             Node node = i.$(Constants.COURSE_LIST).get(0);
             if (node != null) {
                 return true;
@@ -142,7 +107,7 @@ public class MinervaClient {
         return documents;
     }
 
-    public OkHttpClient getClient() {
+    public HttpClient getClient() {
         return this._browser;
     }
 
@@ -153,12 +118,9 @@ public class MinervaClient {
      * @return A valid download URL for the document
      */
     public String getDocumentDownloadURL(Course course, Document document) throws IOException {
-        Request request = new Request.Builder()
-                .url(Constants.AJAX_URL + course.getCode() + Constants.DOCUMENTS + document.getId())
-                .build();
-        Response response = _browser.newCall(request).execute();
+        String response = _browser.get(Constants.AJAX_URL + course.getCode() + Constants.DOCUMENTS + document.getId());
         JsonParser parser = new JsonParser();
-        JsonElement element = parser.parse(response.body().string());
+        JsonElement element = parser.parse(response);
         return element.getAsJsonObject().get("url").getAsString();
     }
 
@@ -166,8 +128,8 @@ public class MinervaClient {
      * This method checks if the last request redirected us to login,
      * meaning we have been logged out and logs us back in
      */
-    public void checkLogin(Response response) throws IOException {
-        if(response.request().httpUrl().toString().contains(Constants.LOGIN_URL)) {
+    public void checkLogin(MinervaClient client) throws IOException {
+        if(client.getClient().getConnection().getURL().toString().contains(Constants.LOGIN_URL)) {
             login();
         }
     }

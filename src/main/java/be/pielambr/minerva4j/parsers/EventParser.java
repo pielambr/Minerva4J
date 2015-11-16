@@ -5,8 +5,6 @@ import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.parsers.json.JSONEvent;
 import be.pielambr.minerva4j.utility.Constants;
 import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -91,15 +89,12 @@ public class EventParser {
      * @return Returns a list of Events for this EventSource
      */
     private static List<Event> getEvents(MinervaClient client, EventSource source) throws IOException {
-        Request request = new Request.Builder()
-                .url(Constants.INDEX_URL + source.getURL())
-                .build();
-        Response response = client.getClient().newCall(request).execute();
+        String response = client.getClient().get(Constants.INDEX_URL + source.getURL());
         String page;
         try {
-            page = new String(response.body().bytes(), "UTF8");
+            page = new String(response.getBytes(), "UTF8");
         } catch (UnsupportedEncodingException ex){
-            page = response.body().string();
+            page = response;
         }
         return parseEvents(page);
     }
@@ -115,15 +110,12 @@ public class EventParser {
     private static List<Event> getEvents(MinervaClient client, EventSource source, Date start, Date end) throws IOException {
         String params = "/?start=" + String.valueOf(start.getTime() / 1000) +
                 "&end=" + String.valueOf(end.getTime() / 1000);
-        Request request = new Request.Builder()
-                .url(Constants.INDEX_URL + source.getURL() + params)
-                .build();
-        Response response = client.getClient().newCall(request).execute();
+        String response = client.getClient().get(Constants.INDEX_URL + source.getURL() + params);
         String page;
         try {
-            page = new String(response.body().bytes(), "UTF8");
+            page = new String(response.getBytes(), "UTF8");
         } catch (UnsupportedEncodingException ex){
-            page = response.body().string();
+            page = response;
         }
         return parseEvents(page);
     }
