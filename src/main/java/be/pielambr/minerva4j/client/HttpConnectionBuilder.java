@@ -12,7 +12,9 @@ import java.util.Map;
  */
 public class HttpConnectionBuilder {
 
-    private static final String COOKIES_HEADER = "Set-Cookie";
+    private static final String SET_COOKIES_HEADER = "Set-Cookie";
+    private static final String COOKIES_HEADER = "Cookie";
+
 
     private Map<String, String> headers;
     private String cookie;
@@ -56,14 +58,15 @@ public class HttpConnectionBuilder {
 
     private HttpURLConnection getBaseConnection() throws IOException {
         HttpURLConnection connection = (HttpURLConnection) getBaseURL().openConnection();
+        if(!method.equals(Methods.GET)) {
+            connection.setDoOutput(true);
+        }
         connection.setRequestMethod(method.getName());
         connection.setInstanceFollowRedirects(true);
         if(cookie != null) {
             connection.addRequestProperty(COOKIES_HEADER, cookie);
         }
-        if(!method.equals(Methods.GET)) {
-            connection.setDoOutput(true);
-        }
+
         for(String key : headers.keySet()) {
             connection.addRequestProperty(key, headers.get(key));
         }
@@ -95,7 +98,7 @@ public class HttpConnectionBuilder {
     }
 
     public static String getCookie(HttpURLConnection connection) {
-        return connection.getHeaderField(COOKIES_HEADER);
+        return connection.getHeaderField(SET_COOKIES_HEADER);
     }
 
     public HttpConnectionBuilder addHeader(String key, String value) {
