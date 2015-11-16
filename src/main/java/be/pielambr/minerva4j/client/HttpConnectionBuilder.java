@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Pieterjan on 16/11/2015.
@@ -12,6 +14,7 @@ public class HttpConnectionBuilder {
 
     private static final String COOKIES_HEADER = "Set-Cookie";
 
+    private Map<String, String> headers;
     private String cookie;
     private String baseURL;
     private StringBuilder path;
@@ -35,6 +38,7 @@ public class HttpConnectionBuilder {
 
     private HttpConnectionBuilder() {
         path = new StringBuilder();
+        headers = new HashMap<String, String>();
     }
 
     public static HttpConnectionBuilder builder() {
@@ -59,6 +63,9 @@ public class HttpConnectionBuilder {
         }
         if(!method.equals(Methods.GET)) {
             connection.setDoOutput(true);
+        }
+        for(String key : headers.keySet()) {
+            connection.addRequestProperty(key, headers.get(key));
         }
         return connection;
     }
@@ -89,6 +96,11 @@ public class HttpConnectionBuilder {
 
     public static String getCookie(HttpURLConnection connection) {
         return connection.getHeaderField(COOKIES_HEADER);
+    }
+
+    public HttpConnectionBuilder addHeader(String key, String value) {
+        this.headers.put(key, value);
+        return this;
     }
 
 }

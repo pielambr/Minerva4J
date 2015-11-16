@@ -23,6 +23,7 @@ public class HttpClient {
                 .setURL(url)
                 .setCookie(cookie)
                 .setRequestMethod(HttpConnectionBuilder.Methods.POST)
+                .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .build();
         writeData(connection, data);
         cookie = HttpConnectionBuilder.getCookie(connection);
