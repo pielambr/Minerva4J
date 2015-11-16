@@ -57,7 +57,7 @@ public class HttpClient {
 
     private void writeData(HttpURLConnection connection, String data) throws IOException {
         DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-        wr.writeChars(data);
+        wr.write(data.getBytes());
     }
 
     public HttpURLConnection getConnection() {
