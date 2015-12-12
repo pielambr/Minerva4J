@@ -43,6 +43,7 @@ public class TestClient {
      * Tests the login to Minerva and the detection for wrong credentials
      */
     @Test
+    @Ignore
     public void testConnect() throws IOException {
         // This should not fail
         MinervaClient client = new MinervaClient(_username, _password);
