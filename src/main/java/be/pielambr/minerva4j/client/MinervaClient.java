@@ -130,7 +130,8 @@ public class MinervaClient {
      */
     public void checkLogin(MinervaClient client) throws IOException {
         if(client.getClient().getConnection().getURL().toString().contains(Constants.LOGIN_URL)
-                || client.getClient().getConnection().getHeaderField("Location").contains(Constants.LOGIN_URL)) {
+                || (client.getClient().getConnection().getHeaderField("Location") != null
+                && client.getClient().getConnection().getHeaderField("Location").contains(Constants.LOGIN_URL))) {
             login();
         }
     }
