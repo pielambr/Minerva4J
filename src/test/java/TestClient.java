@@ -2,6 +2,7 @@ import be.pielambr.minerva4j.client.MinervaClient;
 import be.pielambr.minerva4j.exceptions.LoginFailedException;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.FileInputStream;

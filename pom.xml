@@ -6,7 +6,7 @@
 
     <groupId>be.pielambr</groupId>
     <artifactId>Minerva4J</artifactId>
-    <version>0.4.2</version>
+    <version>0.4.3</version>
 
     <name>Minerva4J</name>
     <description>Unofficial Java library for Minerva - UGent</description>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>org.jodd</groupId>
             <artifactId>jodd-lagarto</artifactId>
-            <version>3.6.6</version>
+            <version>3.6.7</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

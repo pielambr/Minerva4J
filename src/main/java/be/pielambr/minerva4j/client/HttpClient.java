@@ -1,5 +1,6 @@
 package be.pielambr.minerva4j.client;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.net.HttpURLConnection;
 public class HttpClient {
 
     private String cookie;
-    private HttpURLConnection connection;
+    private HttpsURLConnection connection;
 
     public HttpClient() {
 
@@ -39,7 +40,7 @@ public class HttpClient {
         return getContent(connection);
     }
 
-    private String getContent(HttpURLConnection connection) throws IOException {
+    private String getContent(HttpsURLConnection connection) throws IOException {
         BufferedReader br;
         if (connection.getResponseCode() >= HttpURLConnection.HTTP_OK
                 && connection.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
@@ -55,7 +56,7 @@ public class HttpClient {
         return sb.toString();
     }
 
-    private void writeData(HttpURLConnection connection, String data) throws IOException {
+    private void writeData(HttpsURLConnection connection, String data) throws IOException {
         DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
         wr.write(data.getBytes());
     }

@@ -1,9 +1,13 @@
 package be.pielambr.minerva4j.client;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,25 +60,34 @@ public class HttpConnectionBuilder {
         }
     }
 
-    private HttpURLConnection getBaseConnection() throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) getBaseURL().openConnection();
-        if(!method.equals(Methods.GET)) {
+    private HttpsURLConnection getBaseConnection() throws IOException, KeyManagementException, NoSuchAlgorithmException {
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, null, null);
+        HttpsURLConnection connection = (HttpsURLConnection) getBaseURL().openConnection();
+        connection.setSSLSocketFactory(sslContext.getSocketFactory());
+        if (!method.equals(Methods.GET)) {
             connection.setDoOutput(true);
         }
         connection.setRequestMethod(method.getName());
         connection.setInstanceFollowRedirects(false);
-        if(cookie != null) {
+        if (cookie != null) {
             connection.addRequestProperty(COOKIES_HEADER, cookie);
         }
 
-        for(String key : headers.keySet()) {
+        for (String key : headers.keySet()) {
             connection.addRequestProperty(key, headers.get(key));
         }
         return connection;
     }
 
-    public HttpURLConnection build() throws IOException {
-        return getBaseConnection();
+    public HttpsURLConnection build() throws IOException {
+        try {
+            return getBaseConnection();
+        } catch (KeyManagementException e) {
+            throw new HttpConnectionBuilderException("Problem with SSL key management");
+        } catch (NoSuchAlgorithmException e) {
+            throw new HttpConnectionBuilderException("SSL has not got a good algorithm");
+        }
     }
 
     public HttpConnectionBuilder setURL(String url) {
